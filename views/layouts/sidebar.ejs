@@ -1,6 +1,5 @@
 <div class="sidenav-scroll scroll-y height-100 pt-5">
   <div class="pb-e-30">
-    <%=sharedData.menu%>
     <ul class="list-unstyled d-flex justify-content-center">
       <li class="<%=(sharedData.menu==='home')?'active':'' %>">
         <a href="home" class="lt-side-btn btn btn-80-60 mr-e-10 <%=(sharedData.menu==='home')?'btn-primary':'btn-transparent' %>">
@@ -223,14 +222,14 @@
         </h5>
         <div id="collapse-librarymenu" class="show" data-parent="#accordion-1">
           <ul class="nav flex-column f-w-500 fs-3 lt-side-menu">
-            <li class="pb-2"><a href="recently-played">Recently Played</a></li>
-            <li class="pb-2"><a href="songs">Songs</a></li>
-            <li class="pb-2"><a href="albums">Albums</a></li>
-            <li class="pb-2"><a href="artists">Artists</a></li>
-            <li class="pb-2"><a href="my-like">My Like</a></li>
-            <li class="pb-2"><a href="purchased">Purchased</a></li>
-            <li class="pb-2"><a href="single-playlist">Single Playlist</a></li>
-            <li class="pb-2"><a href="single-artist">Single Artist</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='recently-played')?'active':'' %>"><a href="recently-played">Recently Played</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='songs')?'active':'' %>"><a href="songs">Songs</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='albums')?'active':'' %>"><a href="albums">Albums</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='artists')?'active':'' %>"><a href="artists">Artists</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='my-like')?'active':'' %>"><a href="my-like">My Like</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='purchased')?'active':'' %>"><a href="purchased">Purchased</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='single-playlist')?'active':'' %>"><a href="single-playlist">Single Playlist</a></li>
+            <li class="pb-2 <%=(sharedData.menu==='single-artist')?'active':'' %>"><a href="single-artist">Single Artist</a></li>
           </ul>
         </div>
       </div>
