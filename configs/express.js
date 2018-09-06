@@ -11,7 +11,6 @@ module.exports = function (app) {
   app.use(bodyParser.json());
   app.use(morgan('dev'));
   app.use(express.static("public"));
-  // app.use(express.static(rootPath + '/api/helpers/email-templates'));
 
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -20,7 +19,6 @@ module.exports = function (app) {
     next();
   });
 
-  // app.set('views', rootPath + 'dist');
   app.engine('ejs', engine);
   app.set('view engine', 'ejs');
   app.set('views', './views');
