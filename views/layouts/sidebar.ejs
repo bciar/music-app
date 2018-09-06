@@ -1,0 +1,329 @@
+<div class="sidenav-scroll scroll-y height-100 pt-5">
+  <div class="pb-e-30">
+    <%=sharedData.menu%>
+    <ul class="list-unstyled d-flex justify-content-center">
+      <li class="<%=(sharedData.menu==='home')?'active':'' %>">
+        <a href="home" class="lt-side-btn btn btn-80-60 mr-e-10 <%=(sharedData.menu==='home')?'btn-primary':'btn-transparent' %>">
+          <span class="adonis-icon pb-2">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32"><path d="M18.4 0h-4.8c-7.511 0-13.6 6.089-13.6 13.6v0 15.312c0 1.705 1.383 3.088 3.088 3.088h1.12c1.705 0 3.088-1.383 3.088-3.088v0-5.28c0-0.002 0-0.005 0-0.008 0-3.411-2.765-6.176-6.176-6.176 0 0 0 0 0 0h0.328v-3.632c0-6.831 5.537-12.368 12.368-12.368v0h4.368c6.831 0 12.368 5.537 12.368 12.368v0 3.632h0.328c-3.415 0-6.184 2.769-6.184 6.184v5.28c0 0 0 0 0 0 0 1.705 1.383 3.088 3.088 3.088 0.003 0 0.006 0 0.008 0h1.12c1.705 0 3.088-1.383 3.088-3.088v0-15.312c0-7.511-6.089-13.6-13.6-13.6v0zM1.448 18.896h0.64c2.050 0 3.712 1.662 3.712 3.712v0 6.088c0 1.025-0.831 1.856-1.856 1.856v0h-0.64c-1.025 0-1.856-0.831-1.856-1.856v0zM30.552 28.696c0 1.025-0.831 1.856-1.856 1.856v0h-0.64c-1.025 0-1.856-0.831-1.856-1.856v0-6.088c0-2.050 1.662-3.712 3.712-3.712v0h0.64z"></path></svg>
+          </span>
+          <p class="m-0">Music</p>
+        </a>
+      </li>
+      <li class="<%=(sharedData.menu==='radio')?'active':'' %>">
+        <a href="radio" class="lt-side-btn btn btn-80-60 mr-e-10 <%=(sharedData.menu==='radio')?'btn-primary':'btn-transparent' %>">
+          <span class="adonis-icon pb-2">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" viewBox="0 0 23 32"><path d="M22.443 13.078c-0.4 0-0.724 0.324-0.724 0.724v0 2.172c0 5.598-4.538 10.136-10.136 10.136s-10.136-4.538-10.136-10.136v0-2.172c0-0.4-0.324-0.724-0.724-0.724s-0.724 0.324-0.724 0.724v0 2.172c0 0.007-0 0.015-0 0.023 0 6.143 4.781 11.169 10.826 11.559l0.034 0.002v1.523c-2.499 0.187-4.718 1.257-6.372 2.897l0.001-0.001h2.259c1.364-0.933 3.050-1.49 4.865-1.49s3.501 0.557 4.895 1.509l-0.030-0.019h2.259c-1.653-1.639-3.872-2.709-6.337-2.894l-0.034-0.002v-1.512c6.052-0.422 10.802-5.435 10.802-11.557 0-0.013-0-0.027-0-0.040v0.002-2.172c0-0.4-0.324-0.724-0.724-0.724v0zM11.584 23.266c3.998 0 7.24-3.241 7.24-7.24v0-8.786c0-3.998-3.241-7.24-7.24-7.24s-7.24 3.241-7.24 7.24v0 8.786c0 3.998 3.241 7.24 7.24 7.24v0zM5.792 7.24c0-3.199 2.593-5.792 5.792-5.792s5.792 2.593 5.792 5.792v0 8.786c0 3.199-2.593 5.792-5.792 5.792s-5.792-2.593-5.792-5.792v0z"></path></svg>
+          </span>
+          <p class="m-0">Radio</p>
+        </a>
+      </li>
+      <li class="<%=(sharedData.menu==='store')?'active':'' %>">
+        <a href="store" class="lt-side-btn btn btn-80-60 mr-e-10 <%=(sharedData.menu==='store')?'btn-primary':'btn-transparent' %>">
+          <span class="adonis-icon pb-2"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 26 32"><path
+                d="M23.77 8.909c-0.027-0.493-0.422-0.886-0.913-0.909l-0.002-0h-4.57v-2.003c0-3.302-2.458-5.997-5.485-5.997s-5.485 2.694-5.485 5.997v2.003h-4.57c-0.494 0.023-0.889 0.416-0.915 0.906l-0 0.002-1.83 22.003c-0.003 0.030-0.005 0.066-0.005 0.102 0 0.251 0.089 0.482 0.237 0.662l-0.001-0.002c0.164 0.198 0.41 0.324 0.684 0.326h23.77c0.273-0.004 0.516-0.13 0.677-0.325l0.001-0.002c0.15-0.179 0.241-0.413 0.241-0.667 0-0.033-0.002-0.066-0.005-0.099l0 0.004zM9.146 5.997c-0.002-0.049-0.004-0.107-0.004-0.164 0-2.057 1.617-3.736 3.649-3.835l0.009-0c2.041 0.1 3.658 1.779 3.658 3.836 0 0.058-0.001 0.115-0.004 0.172l0-0.008v2.003h-7.309zM1.92 29.997l1.664-20h3.738v2.278c-0.558 0.369-0.922 0.994-0.922 1.704 0 0.009 0 0.017 0 0.026v-0.001c-0.001 0.024-0.002 0.051-0.002 0.079 0 1.029 0.81 1.87 1.828 1.918l0.004 0c1.019-0.052 1.826-0.89 1.826-1.918 0-0.028-0.001-0.056-0.002-0.083l0 0.004c0-0.011 0-0.023 0-0.036 0-0.703-0.358-1.323-0.902-1.687l-0.007-0.005v-2.278h7.309v2.278c-0.551 0.369-0.909 0.988-0.909 1.692 0 0.013 0 0.025 0 0.038l-0-0.002c-0.001 0.024-0.002 0.051-0.002 0.079 0 1.027 0.807 1.866 1.821 1.918l0.005 0c1.022-0.048 1.832-0.889 1.832-1.918 0-0.028-0.001-0.055-0.002-0.083l0 0.004c0-0.008 0-0.019 0-0.029 0-0.707-0.361-1.33-0.908-1.695l-0.007-0.005v-2.278h3.738l1.658 20z"></path></svg></span>
+          <p class="m-0">Store</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="pb-e-30">
+    <% if(sharedData.menu==='home') { %>
+    <h5 class="fs-1 l-s-2 lt-side-menu-title pb-3 f-w-600">MUSIC</h5>
+    <ul class="nav flex-column fs-3 lt-side-menu">
+      <li class="pb-e-10 active">
+        <span class="adonis-icon color-active-third pr-3">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 16 15"><defs></defs>
+            <g data-name="Layer 2">
+              <g id="overviews_icon" data-name="overviews icon" class="cls-1">
+                <g id="overviews_icon-2" data-name="overviews icon">
+                  <path class="cls-2" d="M16,1.4A1.43,1.43,0,0,0,14.55,0l-8,.7a1.43,1.43,0,0,0-1.45,1.4v7h0v2.78h0a2,2,0,0,1,0,.38,2.14,2.14,0,0,1-2.19,2.09,2.1,2.1,0,1,1,0-4.19,2.25,2.25,0,0,1,.72.13v-.13h0a.34.34,0,0,0,0-.69h0a.33.33,0,0,0-.18.06,2.75,2.75,0,0,0-.54-.06A2.85,2.85,0,0,0,0,12.22,2.85,2.85,0,0,0,2.91,15a2.85,2.85,0,0,0,2.91-2.78s0,0,0-.06h0V2.09a.71.71,0,0,1,.73-.7l8-.7a.71.71,0,0,1,.73.7v7h0v2.78h0a2,2,0,0,1,0,.36,2.19,2.19,0,1,1-2.19-2.08,2.27,2.27,0,0,1,.72.12V9.44h0a.36.36,0,0,0,.36-.36h0a.36.36,0,0,0-.36-.36h0a.35.35,0,0,0-.18.06,2.72,2.72,0,0,0-.52-.06A2.8,2.8,0,1,0,16,11.52h0Z"
+                  />
+                </g>
+              </g>
+            </g></svg>
+        </span>
+        <a href="#browse-content-overview" class="adonis-ajax-load loaded active" data-target="#browse-content-overview">Overviews</a>
+      </li>
+      <li class="pb-e-10">
+        <span class="adonis-icon color-active-third pr-3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="16"
+            viewBox="0 0 12.29 16.21"><defs>
+              <style>
+                .cls-1 {
+                  isolation: isolate;
+                }
+
+                .cls-2 {
+                  fill-rule: evenodd;
+                }
+              </style>
+            </defs>
+            <g data-name="Layer 2">
+              <g id="new_music_icon" data-name="new music icon" class="cls-1">
+                <g id="new_music_icon-2" data-name="new music icon">
+                  <path class="cls-2" d="M6.37,16.21l.12,0H6.37ZM6.58.08h0L6.37,0V0h0a.4.4,0,0,0-.4.4V10.5a3.4,3.4,0,1,0,.81,2.91.39.39,0,0,0,.07-.21V1.12a7.6,7.6,0,0,1,3.26,2.74.39.39,0,0,0-.17,0,.4.4,0,1,0,.55.15l0,0,.63-.31A8.51,8.51,0,0,0,6.58.08ZM3.37,15.36a2.56,2.56,0,1,1,2.56-2.56A2.56,2.56,0,0,1,3.37,15.36ZM11.31,4.14V7c0,.23.08.46.09.7h.89A8.41,8.41,0,0,0,11.31,4.14Z"
+                  />
+                </g>
+              </g>
+            </g></svg></span>
+        <a class="adonis-ajax-load" href="#browse-new-music" data-target="#browse-new-music" data-content="home/music/new-music">New
+          Music
+        </a>
+      </li>
+      <li class="pb-e-10">
+        <span class="adonis-icon color-active-third pr-3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="17"
+            viewBox="0 0 17.98 17.17"><defs>
+              <style>
+                .cls-1 {
+                  isolation: isolate;
+                }
+
+                .cls-2 {
+                  fill-rule: evenodd;
+                }
+              </style>
+            </defs>
+            <g data-name="Layer 2">
+              <g data-name="playlist icon" class="cls-1">
+                <g>
+                  <path class="cls-2" d="M.42.93A.44.44,0,0,0,0,1.38a.44.44,0,0,0,.42.45.44.44,0,0,0,.42-.45A.44.44,0,0,0,.42.93Zm0,5.41a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Zm1.31.91H9.39a.45.45,0,0,0,.45-.45h0a.45.45,0,0,0-.45-.45H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,7.24Zm0-5.41H9.39a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,9.39.93H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,1.84ZM18,8.13h0Zm-.9-3.54,0,0h0A8.74,8.74,0,0,0,12.25.1.42.42,0,0,0,12.09,0L12,0V0h0a.43.43,0,0,0-.43.43v10.7A3.35,3.35,0,0,0,9,9.93a3.53,3.53,0,0,0-3.44,3.61A3.53,3.53,0,0,0,9,17.15a3.48,3.48,0,0,0,3.37-2.93.42.42,0,0,0,.06-.21V1.16A7.89,7.89,0,0,1,16.31,5h0a.44.44,0,0,0,0,.08.42.42,0,0,0,.59.16A.46.46,0,0,0,17.09,4.6ZM9,16.24a2.64,2.64,0,0,1-2.56-2.7A2.64,2.64,0,0,1,9,10.84a2.64,2.64,0,0,1,2.56,2.7A2.64,2.64,0,0,1,9,16.24Zm-4.73-4.5H1.73a.45.45,0,0,0-.45.45h0a.45.45,0,0,0,.45.45H4.27a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,4.27,11.74ZM12,17.17l.06,0H12ZM.42,11.74a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Z"
+                  />
+                </g>
+              </g>
+            </g></svg>
+        </span>
+        <a class="adonis-ajax-load" href="#browse-new-playlist" data-target="#browse-new-playlist" data-content="home/music/playlist">Playlists</a>
+      </li>
+      <li class="pb-e-10">
+        <span class="adonis-icon color-active-third pr-3">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="15" viewBox="0 0 16 16"><defs>
+              <style>
+                .cls-1 {
+                  isolation: isolate;
+                }
+
+                .cls-2 {
+                  fill-rule: evenodd;
+                }
+              </style>
+            </defs>
+            <g data-name="Layer 2">
+              <g id="Stats_2" class="cls-1">
+                <g id="Stats_2-2" data-name="Stats_2">
+                  <path class="cls-2" d="M15.67,0a.33.33,0,0,0-.33.33V1.94L12.89,3.22a1.85,1.85,0,1,0-2.5,2.67L9.57,7.72a1.84,1.84,0,0,0-.44-.06A1.86,1.86,0,0,0,7.27,9.52a1.84,1.84,0,0,0,.06.44l-1.83.81a1.86,1.86,0,1,0-2.61,2.55l-1,2H.33a.33.33,0,0,0,0,.65H14.77A1.23,1.23,0,0,0,16,14.77V.33A.33.33,0,0,0,15.67,0ZM10.22,4.35a1.2,1.2,0,0,1,2.27-.56h0a1.19,1.19,0,0,1,.14.55,1.21,1.21,0,1,1-2.41,0Zm-1.09,4A1.2,1.2,0,1,1,7.93,9.52,1.21,1.21,0,0,1,9.13,8.32Zm-6.37,3.5a1.22,1.22,0,1,1,.69,1.09h0A1.2,1.2,0,0,1,2.76,11.82Zm12.59,3a.57.57,0,0,1-.57.57H2.65l.82-1.74a1.83,1.83,0,0,0,.48.07,1.86,1.86,0,0,0,1.86-1.86,1.84,1.84,0,0,0-.06-.44l1.83-.81A1.86,1.86,0,1,0,10.17,8L11,6.15a1.84,1.84,0,0,0,.44.06,1.86,1.86,0,0,0,1.86-1.86,1.83,1.83,0,0,0-.09-.55l2.15-1.12Z"
+                  />
+                </g>
+              </g>
+            </g></svg></span>
+        <a class="adonis-ajax-load" href="#browse-charts" data-target="#browse-charts" data-content="home/music/charts">Charts</a>
+      </li>
+      <li class="pb-e-10">
+        <span class="adonis-icon color-active-third pr-3">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="15" viewBox="0 0 17 17.01"><defs>
+              <style>
+                .cls-1 {
+                  isolation: isolate;
+                }
+
+                .cls-2 {
+                  fill-rule: evenodd;
+                }
+              </style>
+            </defs>
+            <g data-name="Layer 2">
+              <g id="icon_genres" data-name="icon genres" class="cls-1">
+                <g id="icon_genres-2" data-name="icon genres">
+                  <path class="cls-2" d="M17,8.5a.39.39,0,0,0-.17-.32l-1.55-1,1.55-1a.39.39,0,0,0,0-.64L8.71.07a.38.38,0,0,0-.43,0L.17,5.48a.39.39,0,0,0,0,.64l1.55,1-1.55,1a.39.39,0,0,0,0,.64l1.55,1-1.55,1a.39.39,0,0,0,0,.64l8.11,5.41a.39.39,0,0,0,.43,0l8.11-5.41a.39.39,0,0,0,0-.64l-1.55-1,1.55-1A.39.39,0,0,0,17,8.5ZM1.08,5.8,8.5.85,15.92,5.8,8.5,10.74,2.63,6.83h0Zm14.83,5.41L8.5,16.16,1.08,11.21l1.33-.89,5.87,3.92a.39.39,0,0,0,.43,0l5.87-3.92ZM8.5,13.45,2.63,9.53h0l-1.54-1,1.33-.89,5.87,3.92a.39.39,0,0,0,.43,0l5.87-3.92,1.33.89Z"
+                  />
+                </g>
+              </g>
+            </g></svg>
+        </span>
+        <a class="adonis-ajax-load" href="#" data-target="#browse-genres" data-content="home/music/genres">Genres</a>
+      </li>
+      <li class="pb-e-10">
+        <span class="adonis-icon color-active-third pr-3">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 39 32">
+            <path d="M22.856 0h-6.856c-8.837 0-16 7.163-16 16s7.163 16 16 16v0h6.856c8.837 0 16-7.163 16-16s-7.163-16-16-16v0zM22.816 30.4h-6.776c-7.953 0-14.4-6.447-14.4-14.4v0 0c0-7.953 6.447-14.4 14.4-14.4v0h6.776c7.953 0 14.4 6.447 14.4 14.4v0 0c0 7.953-6.447 14.4-14.4 14.4v0zM26.64 16.496s0-0.064 0-0.096v-0.040l-0.104-0.112-0.12-0.112-9.728-5.6c-0.113-0.064-0.247-0.102-0.391-0.102-0.223 0-0.424 0.091-0.569 0.238l-0 0-0.072 0.088s-0.048 0.040-0.064 0.072 0 0 0 0.048c-0.068 0.112-0.109 0.247-0.112 0.391v11.129c0 0.442 0.358 0.8 0.8 0.8v0 0c0.166-0.006 0.318-0.062 0.442-0.154l-0.002 0.002 9.68-5.6 0.12-0.112c0.038-0.036 0.072-0.075 0.102-0.118l0.002-0.002s0 0 0 0 0-0.064 0-0.096c0.019-0.043 0.035-0.094 0.047-0.146l0.001-0.006c0.004-0.023 0.006-0.049 0.006-0.076s-0.002-0.053-0.006-0.079l0 0.003c0.004-0.023 0.006-0.049 0.006-0.076s-0.002-0.053-0.006-0.079l0 0.003c-0.006-0.062-0.017-0.119-0.034-0.174l0.002 0.006zM17.040 21.008v-8.416l7.264 4.208z"></path></svg>
+        </span>
+        <a class="adonis-ajax-load" href="#browse-videos" data-target="#browse-videos" data-content="home/music/videos">Videos</a>
+      </li>
+    </ul>
+    <% } else if (sharedData.menu==='radio') { %>
+      <h5 class="fs-1 l-s-2 lt-side-menu-title pb-3 f-w-600">RADIO</h5>
+      <ul class="nav flex-column fs-3 lt-side-menu">
+          <li class="pb-e-10 active">
+              <span class="adonis-icon color-active-third pr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                      width="16" viewBox="0 0 16 15"><defs></defs>
+                      <g data-name="Layer 2">
+                          <g id="overviews_icon" data-name="overviews icon" class="cls-1">
+                              <g id="overviews_icon-2" data-name="overviews icon">
+                                  <path class="cls-2" d="M16,1.4A1.43,1.43,0,0,0,14.55,0l-8,.7a1.43,1.43,0,0,0-1.45,1.4v7h0v2.78h0a2,2,0,0,1,0,.38,2.14,2.14,0,0,1-2.19,2.09,2.1,2.1,0,1,1,0-4.19,2.25,2.25,0,0,1,.72.13v-.13h0a.34.34,0,0,0,0-.69h0a.33.33,0,0,0-.18.06,2.75,2.75,0,0,0-.54-.06A2.85,2.85,0,0,0,0,12.22,2.85,2.85,0,0,0,2.91,15a2.85,2.85,0,0,0,2.91-2.78s0,0,0-.06h0V2.09a.71.71,0,0,1,.73-.7l8-.7a.71.71,0,0,1,.73.7v7h0v2.78h0a2,2,0,0,1,0,.36,2.19,2.19,0,1,1-2.19-2.08,2.27,2.27,0,0,1,.72.12V9.44h0a.36.36,0,0,0,.36-.36h0a.36.36,0,0,0-.36-.36h0a.35.35,0,0,0-.18.06,2.72,2.72,0,0,0-.52-.06A2.8,2.8,0,1,0,16,11.52h0Z"
+                                  />
+                              </g>
+                          </g>
+                      </g> </svg> </span>
+              <a href="#" class="adonis-ajax-load loaded active" data-target="#radio-stations">Staions</a>
+          </li>
+          <li class="pb-e-10">
+              <span class="adonis-icon color-active-third pr-3"> <svg xmlns="http://www.w3.org/2000/svg"
+                      version="1.1" width="17" viewBox="0 0 17.98 17.17"><defs>
+                          <style>
+                              .cls-1 {
+                                  isolation: isolate
+                              }
+
+                              .cls-2 {
+                                  fill-rule: evenodd
+                              }
+                          </style>
+                      </defs>
+                      <g data-name="Layer 2">
+                          <g id="playlist_icon" data-name="playlist icon" class="cls-1">
+                              <g id="playlist_icon-2" data-name="playlist icon">
+                                  <path class="cls-2" d="M.42.93A.44.44,0,0,0,0,1.38a.44.44,0,0,0,.42.45.44.44,0,0,0,.42-.45A.44.44,0,0,0,.42.93Zm0,5.41a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Zm1.31.91H9.39a.45.45,0,0,0,.45-.45h0a.45.45,0,0,0-.45-.45H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,7.24Zm0-5.41H9.39a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,9.39.93H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,1.84ZM18,8.13h0Zm-.9-3.54,0,0h0A8.74,8.74,0,0,0,12.25.1.42.42,0,0,0,12.09,0L12,0V0h0a.43.43,0,0,0-.43.43v10.7A3.35,3.35,0,0,0,9,9.93a3.53,3.53,0,0,0-3.44,3.61A3.53,3.53,0,0,0,9,17.15a3.48,3.48,0,0,0,3.37-2.93.42.42,0,0,0,.06-.21V1.16A7.89,7.89,0,0,1,16.31,5h0a.44.44,0,0,0,0,.08.42.42,0,0,0,.59.16A.46.46,0,0,0,17.09,4.6ZM9,16.24a2.64,2.64,0,0,1-2.56-2.7A2.64,2.64,0,0,1,9,10.84a2.64,2.64,0,0,1,2.56,2.7A2.64,2.64,0,0,1,9,16.24Zm-4.73-4.5H1.73a.45.45,0,0,0-.45.45h0a.45.45,0,0,0,.45.45H4.27a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,4.27,11.74ZM12,17.17l.06,0H12ZM.42,11.74a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Z"
+                                  />
+                              </g>
+                          </g>
+                      </g></svg> </span>
+              <a class="adonis-ajax-load" href="#radio-featured" data-target="#radio-featured" data-content="radio/featured">Featured</a>
+          </li>
+          <li class="pb-e-10">
+              <span class="adonis-icon color-active-third pr-3"> <svg xmlns="http://www.w3.org/2000/svg"
+                      version="1.1" width="15" viewBox="0 0 16 16"><defs>
+                          <style>
+                              .cls-1 {
+                                  isolation: isolate
+                              }
+
+                              .cls-2 {
+                                  fill-rule: evenodd
+                              }
+                          </style>
+                      </defs>
+                      <g data-name="Layer 2">
+                          <g id="Stats_2" class="cls-1">
+                              <g id="Stats_2-2" data-name="Stats_2">
+                                  <path class="cls-2" d="M15.67,0a.33.33,0,0,0-.33.33V1.94L12.89,3.22a1.85,1.85,0,1,0-2.5,2.67L9.57,7.72a1.84,1.84,0,0,0-.44-.06A1.86,1.86,0,0,0,7.27,9.52a1.84,1.84,0,0,0,.06.44l-1.83.81a1.86,1.86,0,1,0-2.61,2.55l-1,2H.33a.33.33,0,0,0,0,.65H14.77A1.23,1.23,0,0,0,16,14.77V.33A.33.33,0,0,0,15.67,0ZM10.22,4.35a1.2,1.2,0,0,1,2.27-.56h0a1.19,1.19,0,0,1,.14.55,1.21,1.21,0,1,1-2.41,0Zm-1.09,4A1.2,1.2,0,1,1,7.93,9.52,1.21,1.21,0,0,1,9.13,8.32Zm-6.37,3.5a1.22,1.22,0,1,1,.69,1.09h0A1.2,1.2,0,0,1,2.76,11.82Zm12.59,3a.57.57,0,0,1-.57.57H2.65l.82-1.74a1.83,1.83,0,0,0,.48.07,1.86,1.86,0,0,0,1.86-1.86,1.84,1.84,0,0,0-.06-.44l1.83-.81A1.86,1.86,0,1,0,10.17,8L11,6.15a1.84,1.84,0,0,0,.44.06,1.86,1.86,0,0,0,1.86-1.86,1.83,1.83,0,0,0-.09-.55l2.15-1.12Z"
+                                  />
+                              </g>
+                          </g>
+                      </g></svg> </span>
+              <a class="adonis-ajax-load" href="#radio-genres" data-target="#radio-genres" data-content="radio/genres">Genres
+                  Stations</a>
+          </li>
+      </ul>
+    <% } %>
+  </div>
+  <div class="pb-e-30">
+    <div id="accordion-1" class="accordion">
+      <div class="playlist-part">
+        <h5 class="fs-1 l-s-2 sidebar-list-title pb-2 lt-side-menu-title title pointer" data-target="#collapse-librarymenu" data-toggle="collapse"
+          aria-expanded="true" aria-controls="collapse-librarymenu">YOUR LIBRARY
+        </h5>
+        <div id="collapse-librarymenu" class="show" data-parent="#accordion-1">
+          <ul class="nav flex-column f-w-500 fs-3 lt-side-menu">
+            <li class="pb-2"><a href="recently-played">Recently Played</a></li>
+            <li class="pb-2"><a href="songs">Songs</a></li>
+            <li class="pb-2"><a href="albums">Albums</a></li>
+            <li class="pb-2"><a href="artists">Artists</a></li>
+            <li class="pb-2"><a href="my-like">My Like</a></li>
+            <li class="pb-2"><a href="purchased">Purchased</a></li>
+            <li class="pb-2"><a href="single-playlist">Single Playlist</a></li>
+            <li class="pb-2"><a href="single-artist">Single Artist</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pb-e-30">
+    <div id="accordion-2" class="accordion">
+      <div class="playlist-part">
+        <h5 class="fs-1 l-s-2 sidebar-list-title pb-2  lt-side-menu-title title pointer" data-target="#collapse-playlists" data-toggle="collapse"
+          aria-expanded="true" aria-controls="collapse-playlists">YOUR PLAYLISTS
+        </h5>
+        <div id="collapse-playlists" class="show" data-parent="#accordion-2">
+          <ul class="nav flex-column pt-e-10 pb-e-10 fs-3 f-w-500">
+            <li class="pb-e-10">
+              <span class="adonis-icon color-active-third">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="18" viewBox="0 0 17.98 17.17"><defs>
+                    <style>
+                      .cls-1 {
+                        isolation: isolate;
+                      }
+
+                      .cls-2 {
+                        fill-rule: evenodd;
+                      }
+                    </style>
+                  </defs>
+                  <g data-name="Layer 2">
+                    <g class="cls-1">
+                      <g data-name="playlist icon">
+                        <path class="cls-2" d="M.42.93A.44.44,0,0,0,0,1.38a.44.44,0,0,0,.42.45.44.44,0,0,0,.42-.45A.44.44,0,0,0,.42.93Zm0,5.41a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Zm1.31.91H9.39a.45.45,0,0,0,.45-.45h0a.45.45,0,0,0-.45-.45H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,7.24Zm0-5.41H9.39a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,9.39.93H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,1.84ZM18,8.13h0Zm-.9-3.54,0,0h0A8.74,8.74,0,0,0,12.25.1.42.42,0,0,0,12.09,0L12,0V0h0a.43.43,0,0,0-.43.43v10.7A3.35,3.35,0,0,0,9,9.93a3.53,3.53,0,0,0-3.44,3.61A3.53,3.53,0,0,0,9,17.15a3.48,3.48,0,0,0,3.37-2.93.42.42,0,0,0,.06-.21V1.16A7.89,7.89,0,0,1,16.31,5h0a.44.44,0,0,0,0,.08.42.42,0,0,0,.59.16A.46.46,0,0,0,17.09,4.6ZM9,16.24a2.64,2.64,0,0,1-2.56-2.7A2.64,2.64,0,0,1,9,10.84a2.64,2.64,0,0,1,2.56,2.7A2.64,2.64,0,0,1,9,16.24Zm-4.73-4.5H1.73a.45.45,0,0,0-.45.45h0a.45.45,0,0,0,.45.45H4.27a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,4.27,11.74ZM12,17.17l.06,0H12ZM.42,11.74a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Z"
+                        />
+                      </g>
+                    </g>
+                  </g></svg></span>
+              <a href="#" class="pl-3 color-active-third">The Beats 1 list</a>
+            </li>
+            <li class="pb-e-10">
+              <span class="adonis-icon color-active-third">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="18" viewBox="0 0 17.98 17.17"><defs>
+                    <style>
+                      .cls-1 {
+                        isolation: isolate;
+                      }
+
+                      .cls-2 {
+                        fill-rule: evenodd;
+                      }
+                    </style>
+                  </defs>
+                  <g data-name="Layer 2">
+                    <g data-name="playlist icon" class="cls-1">
+                      <g data-name="playlist icon">
+                        <path class="cls-2" d="M.42.93A.44.44,0,0,0,0,1.38a.44.44,0,0,0,.42.45.44.44,0,0,0,.42-.45A.44.44,0,0,0,.42.93Zm0,5.41a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Zm1.31.91H9.39a.45.45,0,0,0,.45-.45h0a.45.45,0,0,0-.45-.45H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,7.24Zm0-5.41H9.39a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,9.39.93H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,1.84ZM18,8.13h0Zm-.9-3.54,0,0h0A8.74,8.74,0,0,0,12.25.1.42.42,0,0,0,12.09,0L12,0V0h0a.43.43,0,0,0-.43.43v10.7A3.35,3.35,0,0,0,9,9.93a3.53,3.53,0,0,0-3.44,3.61A3.53,3.53,0,0,0,9,17.15a3.48,3.48,0,0,0,3.37-2.93.42.42,0,0,0,.06-.21V1.16A7.89,7.89,0,0,1,16.31,5h0a.44.44,0,0,0,0,.08.42.42,0,0,0,.59.16A.46.46,0,0,0,17.09,4.6ZM9,16.24a2.64,2.64,0,0,1-2.56-2.7A2.64,2.64,0,0,1,9,10.84a2.64,2.64,0,0,1,2.56,2.7A2.64,2.64,0,0,1,9,16.24Zm-4.73-4.5H1.73a.45.45,0,0,0-.45.45h0a.45.45,0,0,0,.45.45H4.27a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,4.27,11.74ZM12,17.17l.06,0H12ZM.42,11.74a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Z"
+                        />
+                      </g>
+                    </g>
+                  </g></svg></span>
+              <a href="#" class="pl-3 color-active-third">The love Summer</a>
+            </li>
+            <li class="pb-e-10">
+              <span class="adonis-icon color-active-third"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="18"
+                  viewBox="0 0 17.98 17.17"><defs>
+                    <style>
+                      .cls-1 {
+                        isolation: isolate;
+                      }
+
+                      .cls-2 {
+                        fill-rule: evenodd;
+                      }
+                    </style>
+                  </defs>
+                  <g data-name="Layer 2">
+                    <g data-name="playlist icon" class="cls-1">
+                      <g data-name="playlist icon">
+                        <path class="cls-2" d="M.42.93A.44.44,0,0,0,0,1.38a.44.44,0,0,0,.42.45.44.44,0,0,0,.42-.45A.44.44,0,0,0,.42.93Zm0,5.41a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Zm1.31.91H9.39a.45.45,0,0,0,.45-.45h0a.45.45,0,0,0-.45-.45H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,7.24Zm0-5.41H9.39a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,9.39.93H1.73a.45.45,0,0,0-.45.45h0A.45.45,0,0,0,1.73,1.84ZM18,8.13h0Zm-.9-3.54,0,0h0A8.74,8.74,0,0,0,12.25.1.42.42,0,0,0,12.09,0L12,0V0h0a.43.43,0,0,0-.43.43v10.7A3.35,3.35,0,0,0,9,9.93a3.53,3.53,0,0,0-3.44,3.61A3.53,3.53,0,0,0,9,17.15a3.48,3.48,0,0,0,3.37-2.93.42.42,0,0,0,.06-.21V1.16A7.89,7.89,0,0,1,16.31,5h0a.44.44,0,0,0,0,.08.42.42,0,0,0,.59.16A.46.46,0,0,0,17.09,4.6ZM9,16.24a2.64,2.64,0,0,1-2.56-2.7A2.64,2.64,0,0,1,9,10.84a2.64,2.64,0,0,1,2.56,2.7A2.64,2.64,0,0,1,9,16.24Zm-4.73-4.5H1.73a.45.45,0,0,0-.45.45h0a.45.45,0,0,0,.45.45H4.27a.45.45,0,0,0,.45-.45h0A.45.45,0,0,0,4.27,11.74ZM12,17.17l.06,0H12ZM.42,11.74a.45.45,0,0,0,0,.91.45.45,0,0,0,0-.91Z"
+                        />
+                      </g>
+                    </g>
+                  </g></svg></span>
+              <a href="#" class="pl-3 color-active-third">Acounstic Classics</a>
+            </li>
+          </ul>
+        </div>
+        <button class="btn btn-primary btn-sm-wide box-rounded-md mt-e-10">New Playlist</button>
+      </div>
+    </div>
+  </div>
+  <div class="pb-e-30">
+    <div>
+      <label class="mr-4">Language </label>
+      <img src="../assets/images/brand-logo/lang-flag.png" alt="">
+    </div>
+  </div>
+  <div class="spacer pb-e-50 pt-e-50"></div>
+</div>

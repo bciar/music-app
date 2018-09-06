@@ -1,0 +1,45 @@
+<% include head.ejs%>
+
+    <div id="wrap" class="main-wrap d-flex flex-column align-content-between justify-content-between">
+        <div class="fixed-layout-full d-flex flex-column">
+            <div class="container-fluid height-100">
+                <div class="row height-100">
+                    <div id="site-header" class="col-md-3 height-100 pl-md-4 pr-md-4 flex-column-sidebar-md sidebar off-canvas off-canvas-off-md off-canvas-left"
+                        data-close-offcanvas-below="768">
+                        <div class="sidebar-bg"><img src="../assets/images/sidebar-bg-1.jpg" alt=""></div>
+                        <div class="d-flex flex-column height-100">
+
+                            <%  include header.ejs%>
+
+                            <%  include sidebar.ejs%>  
+                        </div>
+                    </div>
+                    <div class="height-100 col-md-9 order-md-2 flex-column-content-md p-0 d-flex flex-column justify-content-between">
+                        <div id="site-content" class="scroll-y">
+                            <div id="site-content-inner">
+                                <div class="master-container-fluid">
+                                    <main id="main">
+
+                                        <% include content-header.ejs%>
+
+                                        <%-body -%>
+                                    </main>
+                                </div>
+
+                            </div>
+                            <!--/#site-content-inner-->
+                            <div class="section-loader preloader fluid-reverse-r">
+                                <div class="preloader-overlay"></div>
+                            </div>
+                        </div>
+                        <!--/#site-content-->
+                        <% include player.ejs%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% include body-effects.ejs%>
+    </div><!-- /#wrap -->
+
+<% include search-box.ejs%>
+<% include footer.ejs%>
