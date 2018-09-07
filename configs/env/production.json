@@ -2,5 +2,5 @@
 	"host": "localhost",
 	"port": 4200,
 	"webHost": "http://localhost:4200",
-	"dbURI": "mongodb://localhost/salon-mgmt"
+	"dbURI": "mongodb://localhost/maple"
 }

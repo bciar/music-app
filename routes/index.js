@@ -13,5 +13,7 @@ module.exports = function(app) {
     app.use('/my-like', main.myLike.bind(main));
     app.use('/single-artist', main.singleArtist.bind(main));
     app.use('/single-playlist', main.singlePlaylist.bind(main));
+
+    app.use('/api', require('../api'));
 }
     
