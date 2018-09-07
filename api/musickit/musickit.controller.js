@@ -1,5 +1,7 @@
 const api_configs = require('../configs');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
+// const http = require('http');
+const request = require("request");
 
 //Storefront
 const url_getAStorefront = `https://api.music.apple.com/v1/storefronts/us`;
@@ -16,52 +18,19 @@ const url_getCatalogCharts = `https://api.music.apple.com/v1/catalog/us/charts`;
 
 
 class MusickitController {
-  constructor() {}
-  
+  constructor() { }
+
   index(req, res) {
     // res.send(api_configs.appleJWT);
     res.send('ok');
-  }
- 
-  getDataFetch (url) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          'Authorization' : 'Bearer ' + api_configs.appleJWT
-        }
-      })
-      .then(function(response) {
-        // let status  = response.status;
-        // let statusText = response.statusText;
-        // let data = response.body;
-        // return res.json({status: statusText, data: data}, status);
-        resolve(response);
-      }, function (err) {
-        reject(err);
-      });
-    })
-    
   }
 
   //get a Storefront
 
   getAStorefront(req, res) {
-    let url = url_getAStorefront;
-    this.getDataFetch(url)
-      .then(data => {
-        console.log(data.body);
-        res.status(data.status).json(data.body);
-      })
-      .catch(err => {
-        res.status(400).json({
-          success: false,
-          data: err,
-          message: 'Failed to retrieve catalog charts.'
-        });
-      });
+
   }
-  
+
   //Get Multiple Storefronts
   // Fetch one or more storefronts by using their identifiers.
   getMultipleStorefront(req, res) {
@@ -95,19 +64,27 @@ class MusickitController {
   //Get Catalog Charts
   //Fetch one or more charts from the Apple Music Catalog.
   getCatalogCharts(req, res) {
-    let url = url_getCatalogCharts + `?types=songs,albums,playlists&genre=20&limit=1`;
-    this.getDataFetch(url)
-      .then(data => {
-        console.log(data.body);
-        res.status(data.status).json(data.body);
-      })
-      .catch(err => {
+    var options = { 
+      method: 'GET',
+      url: url_getCatalogCharts + `?types=songs,albums,playlists&genre=20&limit=1`,
+      headers: 
+      { 
+        authorization: 'Bearer ' + api_configs.appleJWT
+      } 
+    };
+
+    request(options, function (error, response, body) {
+      if (error) {
         res.status(400).json({
           success: false,
           data: err,
           message: 'Failed to retrieve catalog charts.'
         });
-      });
+      };
+      console.log(body);
+      res.status(200).send(body);
+    });
+
   }
 
 

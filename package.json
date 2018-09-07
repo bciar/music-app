@@ -18,9 +18,10 @@
         "ejs-locals": "^1.0.2",
         "express": "^4.16.2",
         "fs": "0.0.1-security",
+        "http": "0.0.0",
         "jsonwebtoken": "^8.3.0",
         "mongoose": "^4.7.4",
-        "node-fetch": "^2.2.0",
+        "request": "^2.88.0",
         "shortid": "^2.2.13"
     },
     "devDependencies": {
