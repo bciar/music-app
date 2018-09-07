@@ -11,6 +11,9 @@ router.get('/musickit', musickit.index.bind(musickit));
 router.get('/musickit/getAStorefront', musickit.getAStorefront.bind(musickit));
 
 router.get('/musickit/getCatalogCharts', musickit.getCatalogCharts.bind(musickit));
+router.get('/musickit/searchCatalogResources', musickit.searchCatalogResources.bind(musickit));
+router.get('/musickit/searchLibraryResources', musickit.searchLibraryResources.bind(musickit));
+router.get('/musickit/getCatalogSearchHints', musickit.getCatalogSearchHints.bind(musickit));
 
 router.get('/spotify', spotify.index.bind(spotify));
 

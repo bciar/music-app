@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+const apiconfigs = require('../../api/configs');
 
 var sharedData = {
     menu: 'home'
@@ -8,6 +10,7 @@ class HomeController {
     }
     
     index(req, res) {
+        
         res.render('pages/home', { sharedData : sharedData });
     }
     newMusic(req, res) {
@@ -17,7 +20,14 @@ class HomeController {
         res.render('pages/parts/music/playlist', { sharedData : sharedData });
     }
     charts(req, res) {
-        res.render('pages/parts/music/charts', { sharedData : sharedData });
+        let url = apiconfigs.musickit_apiurl + `/getCatalogCharts`;
+        fetch(url)
+            .then(res => res.text())
+            .then(body => {
+                let result = JSON.parse(body);
+                res.render('pages/parts/music/charts', { sharedData : sharedData, resultData: result });
+            });
+        
     }
     genres(req, res) {
         res.render('pages/parts/music/genres', { sharedData : sharedData });
