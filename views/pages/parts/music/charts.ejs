@@ -65,13 +65,13 @@
                 <% for(var i = 4*j ; i < 4*(j+1) ; i++) {  
                     var attributes = resultData.results.songs[0].data[i].attributes;
                     var artwork = attributes.artwork;
-                    var url = artwork.url;
-                    url = url.replace('{w}', artwork.width);
-                    url = url.replace('{h}', artwork.height);
+                    var img_url = artwork.url;
+                    img_url = img_url.replace('{w}', artwork.width);
+                    img_url = img_url.replace('{h}', artwork.height);
                 %>
                     <div class="img-box-horizontal music-img-box h-g-bg h-d-shadow">
                         <div class="img-box img-box-sm box-rounded-sm">
-                            <img src="<%= url%>" alt="">
+                            <img src="<%= img_url%>" alt="">
                         </div>
                         <div class="des">
                             <h6 class="title"><a href="#"><%= attributes.name %></a></h6>
@@ -101,10 +101,17 @@
     <div class="adonis-carousel gutter-30" data-dots="yes" data-items="7" data-items-responsive="0:1|300:2|900:4|1200:5|1600:7">
         <div class="carousel-wrapper">
             <div class="owl-carousel owl-theme-adonis">
+                <% for(var i = 0; i < 20 ; i++) {
+                    var album = resultData.results.albums[0].data[i].attributes;
+                    var artwork = album.artwork;
+                    var img_url = artwork.url;
+                    img_url = img_url.replace('{w}', artwork.width);
+                    img_url = img_url.replace('{h}', artwork.height);
+                %>
                 <div class="item">
                     <div class="music-img-box">
                         <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-1.jpg" data-2x="assets/images/new-releases/new-releases-1@2x.jpg" alt="">
+                            <img class="retina" src="<%= img_url%>" data-2x="assets/images/new-releases/new-releases-1@2x.jpg" alt="">
                             <div class="hover-state">
                                 <div class="absolute-bottom-left pl-e-20 pb-e-20">
                                     <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
@@ -114,181 +121,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
+                        <h6 class="title"><a href="#"><%=album.name%></a></h6>
+                        <p class="sub-title category"><a href="#"><%=album.artistName%></a></p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-2.jpg" data-2x="assets/images/new-releases/new-releases-2@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-3.jpg" data-2x="assets/images/new-releases/new-releases-3@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-4.jpg" data-2x="assets/images/new-releases/new-releases-4@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-5.jpg" data-2x="assets/images/new-releases/new-releases-5@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-6.jpg" data-2x="assets/images/new-releases/new-releases-6@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-7.jpg" data-2x="assets/images/new-releases/new-releases-7@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-8.jpg" data-2x="assets/images/new-releases/new-releases-8@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-9.jpg" data-2x="assets/images/new-releases/new-releases-9@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-10.jpg" data-2x="assets/images/new-releases/new-releases-10@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/new-releases/new-releases-11.jpg" data-2x="assets/images/new-releases/new-releases-11@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-top-right pr-e-20 pt-e-20">
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </div>
