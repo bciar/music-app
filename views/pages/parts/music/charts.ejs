@@ -62,20 +62,14 @@
             <div class="owl-carousel owl-theme-adonis">
             <% for(var j = 0 ; j < 5 ; j++) {  %>
             <div class="item">
-                <% for(var i = 4*j ; i < 4*(j+1) ; i++) {  
-                    var attributes = resultData.results.songs[0].data[i].attributes;
-                    var artwork = attributes.artwork;
-                    var img_url = artwork.url;
-                    img_url = img_url.replace('{w}', artwork.width);
-                    img_url = img_url.replace('{h}', artwork.height);
-                %>
+                <% for(var i = 4*j ; i < 4*(j+1) ; i++) {  %>
                     <div class="img-box-horizontal music-img-box h-g-bg h-d-shadow">
                         <div class="img-box img-box-sm box-rounded-sm">
-                            <img src="<%= img_url%>" alt="">
+                            <img src="<%= resultData.songs[i].img_url%>" alt="">
                         </div>
                         <div class="des">
-                            <h6 class="title"><a href="#"><%= attributes.name %></a></h6>
-                            <p class="sub-title"><a href="#"><%= attributes.artistName %></a></p>
+                            <h6 class="title"><a href="#"><%= resultData.songs[i].name %></a></h6>
+                            <p class="sub-title"><a href="#"><%= resultData.songs[i].artistName %></a></p>
                         </div>
                         <div class="hover-state d-flex justify-content-between align-items-center">
                             <span class="pointer play-btn-dark box-rounded-sm"><i class="play-icon"></i></span>
@@ -101,17 +95,11 @@
     <div class="adonis-carousel gutter-30" data-dots="yes" data-items="7" data-items-responsive="0:1|300:2|900:4|1200:5|1600:7">
         <div class="carousel-wrapper">
             <div class="owl-carousel owl-theme-adonis">
-                <% for(var i = 0; i < 20 ; i++) {
-                    var album = resultData.results.albums[0].data[i].attributes;
-                    var artwork = album.artwork;
-                    var img_url = artwork.url;
-                    img_url = img_url.replace('{w}', artwork.width);
-                    img_url = img_url.replace('{h}', artwork.height);
-                %>
+                <% for(var i = 0; i < 10 ; i++) { %>
                 <div class="item">
                     <div class="music-img-box">
                         <div class="img-box box-rounded-md">
-                            <img class="retina" src="<%= img_url%>" data-2x="assets/images/new-releases/new-releases-1@2x.jpg" alt="">
+                            <div class="retina box-h180" style="background-image: url('<%= resultData.albums[i].img_url %>'); "> </div>
                             <div class="hover-state">
                                 <div class="absolute-bottom-left pl-e-20 pb-e-20">
                                     <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
@@ -121,8 +109,8 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="title"><a href="#"><%=album.name%></a></h6>
-                        <p class="sub-title category"><a href="#"><%=album.artistName%></a></p>
+                        <h6 class="title"><a href="#"><%=resultData.albums[i].name%></a></h6>
+                        <p class="sub-title category"><a href="#"><%=resultData.albums[i].artistName%></a></p>
                     </div>
                 </div>
                 <% } %>
@@ -138,10 +126,11 @@
     <div class="adonis-carousel" data-dots="yes"data-items-responsive="0:1|600:2|900:3|1200:4|1600:5">
         <div class="gutter-30">
             <div class="owl-carousel owl-theme-adonis">
+            <% for(var i = 0; i < 10 ; i++) { %>
                 <div class="item">
                     <div class="music-img-box">
                         <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/videos/videos-1.jpg" data-2x="assets/images/videos/videos-1@2x.jpg" alt="">
+                            <div class="retina box-h180" style="background-image: url('<%= resultData.music_videos[i].img_url %>'); "> </div>
                             <div class="hover-state">
                                 <div class="absolute-bottom-left pl-e-20 pb-e-20">
                                     <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
@@ -154,110 +143,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
+                        <h6 class="title"><a href="#"><%=resultData.music_videos[i].name%></a></h6>
+                        <p class="sub-title category"><a href="#"><%=resultData.music_videos[i].artistName%></a></p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/videos/videos-2.jpg" data-2x="assets/images/videos/videos-2@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-bottom-right pr-e-20 pb-e-20">
-                                    <span class="mr-2"><span class="adonis-icon text-light pointer"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 37 32">
-                                        <path d="M27.379 0c-3.478 0.417-6.509 2.067-8.695 4.492l-0.011 0.012c-2.204-2.428-5.231-4.075-8.638-4.498l-0.068-0.007c-6.232 0-9.966 3.641-9.966 9.756 0.377 3.717 2.096 6.973 4.658 9.327l0.011 0.010 13.001 12.534c0.225 0.231 0.539 0.374 0.886 0.374 0.009 0 0.017-0 0.026-0l-0.001 0c0.004 0 0.010 0 0.015 0 0.35 0 0.667-0.143 0.895-0.373l0-0 13.187-12.511c0-0.187 4.668-4.365 4.668-9.36 0-6.115-3.734-9.756-9.966-9.756zM30.763 17.179l-12.090 11.647-12.114-11.67c-2.066-1.882-3.481-4.446-3.89-7.334l-0.008-0.065c0-5.859 3.968-7.002 7.306-7.002s6.605 3.361 7.679 4.668c0.253 0.283 0.619 0.46 1.027 0.46s0.774-0.177 1.026-0.458l0.001-0.001c1.074-1.284 4.668-4.668 7.679-4.668s7.282 1.237 7.282 7.002c0 3.805-3.851 7.352-3.898 7.422z"></path>
-                                    </svg></span></span>
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/videos/videos-3.jpg" data-2x="assets/images/videos/videos-3@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-bottom-right pr-e-20 pb-e-20">
-                                    <span class="mr-2"><span class="adonis-icon text-light pointer"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 37 32">
-                                        <path d="M27.379 0c-3.478 0.417-6.509 2.067-8.695 4.492l-0.011 0.012c-2.204-2.428-5.231-4.075-8.638-4.498l-0.068-0.007c-6.232 0-9.966 3.641-9.966 9.756 0.377 3.717 2.096 6.973 4.658 9.327l0.011 0.010 13.001 12.534c0.225 0.231 0.539 0.374 0.886 0.374 0.009 0 0.017-0 0.026-0l-0.001 0c0.004 0 0.010 0 0.015 0 0.35 0 0.667-0.143 0.895-0.373l0-0 13.187-12.511c0-0.187 4.668-4.365 4.668-9.36 0-6.115-3.734-9.756-9.966-9.756zM30.763 17.179l-12.090 11.647-12.114-11.67c-2.066-1.882-3.481-4.446-3.89-7.334l-0.008-0.065c0-5.859 3.968-7.002 7.306-7.002s6.605 3.361 7.679 4.668c0.253 0.283 0.619 0.46 1.027 0.46s0.774-0.177 1.026-0.458l0.001-0.001c1.074-1.284 4.668-4.668 7.679-4.668s7.282 1.237 7.282 7.002c0 3.805-3.851 7.352-3.898 7.422z"></path>
-                                    </svg></span></span>
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/videos/videos-4.jpg" data-2x="assets/images/videos/videos-4@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-bottom-right pr-e-20 pb-e-20">
-                                    <span class="mr-2"><span class="adonis-icon text-light pointer"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 37 32">
-                                        <path d="M27.379 0c-3.478 0.417-6.509 2.067-8.695 4.492l-0.011 0.012c-2.204-2.428-5.231-4.075-8.638-4.498l-0.068-0.007c-6.232 0-9.966 3.641-9.966 9.756 0.377 3.717 2.096 6.973 4.658 9.327l0.011 0.010 13.001 12.534c0.225 0.231 0.539 0.374 0.886 0.374 0.009 0 0.017-0 0.026-0l-0.001 0c0.004 0 0.010 0 0.015 0 0.35 0 0.667-0.143 0.895-0.373l0-0 13.187-12.511c0-0.187 4.668-4.365 4.668-9.36 0-6.115-3.734-9.756-9.966-9.756zM30.763 17.179l-12.090 11.647-12.114-11.67c-2.066-1.882-3.481-4.446-3.89-7.334l-0.008-0.065c0-5.859 3.968-7.002 7.306-7.002s6.605 3.361 7.679 4.668c0.253 0.283 0.619 0.46 1.027 0.46s0.774-0.177 1.026-0.458l0.001-0.001c1.074-1.284 4.668-4.668 7.679-4.668s7.282 1.237 7.282 7.002c0 3.805-3.851 7.352-3.898 7.422z"></path>
-                                    </svg></span></span>
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/videos/videos-5.jpg" data-2x="assets/images/videos/videos-5@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-bottom-right pr-e-20 pb-e-20">
-                                    <span class="mr-2"><span class="adonis-icon text-light pointer"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 37 32">
-                                        <path d="M27.379 0c-3.478 0.417-6.509 2.067-8.695 4.492l-0.011 0.012c-2.204-2.428-5.231-4.075-8.638-4.498l-0.068-0.007c-6.232 0-9.966 3.641-9.966 9.756 0.377 3.717 2.096 6.973 4.658 9.327l0.011 0.010 13.001 12.534c0.225 0.231 0.539 0.374 0.886 0.374 0.009 0 0.017-0 0.026-0l-0.001 0c0.004 0 0.010 0 0.015 0 0.35 0 0.667-0.143 0.895-0.373l0-0 13.187-12.511c0-0.187 4.668-4.365 4.668-9.36 0-6.115-3.734-9.756-9.966-9.756zM30.763 17.179l-12.090 11.647-12.114-11.67c-2.066-1.882-3.481-4.446-3.89-7.334l-0.008-0.065c0-5.859 3.968-7.002 7.306-7.002s6.605 3.361 7.679 4.668c0.253 0.283 0.619 0.46 1.027 0.46s0.774-0.177 1.026-0.458l0.001-0.001c1.074-1.284 4.668-4.668 7.679-4.668s7.282 1.237 7.282 7.002c0 3.805-3.851 7.352-3.898 7.422z"></path>
-                                    </svg></span></span>
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="music-img-box">
-                        <div class="img-box box-rounded-md">
-                            <img class="retina" src="../assets/images/videos/videos-6.jpg" data-2x="assets/images/videos/videos-6@2x.jpg" alt="">
-                            <div class="hover-state">
-                                <div class="absolute-bottom-left pl-e-20 pb-e-20">
-                                    <span class="pointer play-btn-dark round-btn"><i class="play-icon"></i></span>
-                                </div>
-                                <div class="absolute-bottom-right pr-e-20 pb-e-20">
-                                    <span class="mr-2"><span class="adonis-icon text-light pointer"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 37 32">
-                                        <path d="M27.379 0c-3.478 0.417-6.509 2.067-8.695 4.492l-0.011 0.012c-2.204-2.428-5.231-4.075-8.638-4.498l-0.068-0.007c-6.232 0-9.966 3.641-9.966 9.756 0.377 3.717 2.096 6.973 4.658 9.327l0.011 0.010 13.001 12.534c0.225 0.231 0.539 0.374 0.886 0.374 0.009 0 0.017-0 0.026-0l-0.001 0c0.004 0 0.010 0 0.015 0 0.35 0 0.667-0.143 0.895-0.373l0-0 13.187-12.511c0-0.187 4.668-4.365 4.668-9.36 0-6.115-3.734-9.756-9.966-9.756zM30.763 17.179l-12.090 11.647-12.114-11.67c-2.066-1.882-3.481-4.446-3.89-7.334l-0.008-0.065c0-5.859 3.968-7.002 7.306-7.002s6.605 3.361 7.679 4.668c0.253 0.283 0.619 0.46 1.027 0.46s0.774-0.177 1.026-0.458l0.001-0.001c1.074-1.284 4.668-4.668 7.679-4.668s7.282 1.237 7.282 7.002c0 3.805-3.851 7.352-3.898 7.422z"></path>
-                                    </svg></span></span>
-                                    <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <h6 class="title"><a href="#">Vestibulum nibh lorem ipsum</a></h6>
-                        <p class="sub-title category"><a href="#">Adonis Music Pop</a></p>
-                    </div>
-                </div>
+            <% } %>
             </div>
         </div>
     </div>
