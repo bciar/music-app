@@ -1,9 +1,24 @@
+const fetch = require('node-fetch');
+const apiconfigs = require('../api/configs');
 var sharedData = {
     menu: 'store'
 }
 class MainController {
 
     constructor() {}
+
+    landing(req, res) {
+        let url = apiconfigs.musickit_apiurl + `/getCatalogCharts`;
+        fetch(url)
+            .then(res => res.text())
+            .then(body => {
+               let result = JSON.parse(body);
+               res.render('pages/landing', { sharedData : sharedData, resultData: result });
+            })
+            .catch(err => {
+                res.status(200).json({status: 'error', message: err});
+            });
+    }
 
     recent(req, res) {
         sharedData.menu = 'recently-played';

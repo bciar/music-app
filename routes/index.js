@@ -1,19 +1,26 @@
-
+const express = require('express');
 const MainController = require('../controllers/main.controller');
+const UserController = require('../controllers/user/user.controller');
 const main = new MainController();
-module.exports = function(app) {
-    app.use('/home', require('../controllers/home'));
-    app.use('/radio', require('../controllers/radio'));
-    app.use('/store', require('../controllers/store'));
-    app.use('/recently-played', main.recent.bind(main));
-    app.use('/songs', main.songs.bind(main));
-    app.use('/albums', main.albums.bind(main));
-    app.use('/artists', main.artists.bind(main));
-    app.use('/purchased', main.purchased.bind(main));
-    app.use('/my-like', main.myLike.bind(main));
-    app.use('/single-artist', main.singleArtist.bind(main));
-    app.use('/single-playlist', main.singlePlaylist.bind(main));
+const user = new UserController();
+const router = express.Router();
 
-    app.use('/api', require('../api'));
-}
+router.get('/', main.landing);
+router.use('/home', require('../controllers/home'));
+router.use('/radio', require('../controllers/radio'));
+router.use('/store', require('../controllers/store'));
+router.get('/recently-played', main.recent);
+router.get('/songs', main.songs);
+router.get('/albums', main.albums);
+router.get('/artists', main.artists);
+router.get('/purchased', main.purchased);
+router.get('/my-like', main.myLike);
+router.get('/single-artist', main.singleArtist);
+router.get('/single-playlist',main.singlePlaylist);
+
+router.use('/user', require('../controllers/user'));
+router.get('/login', user.loginView);
+
+router.use('/api', require('../api'));
     
+module.exports = router;

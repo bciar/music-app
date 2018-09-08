@@ -5,6 +5,6 @@ const router = express.Router();
 
 const store = new StoreController();
 
-router.get('/', store.index.bind(store));
+router.get('/', store.index);
 
 module.exports = router;

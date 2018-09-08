@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 // const rootPath = path.normalize(__dirname + '/../../');
 const engine = require('ejs-locals');
+
+const router = require('../routes');
+
 module.exports = function (app) {
   app.use(bodyParser.urlencoded({
     extended: true
@@ -19,6 +22,7 @@ module.exports = function (app) {
     next();
   });
 
+  app.use('/', router);
   app.engine('ejs', engine);
   app.set('view engine', 'ejs');
   app.set('views', './views');

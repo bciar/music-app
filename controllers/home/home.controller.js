@@ -10,7 +10,6 @@ class HomeController {
     }
     
     index(req, res) {
-        
         res.render('pages/home', { sharedData : sharedData });
     }
     newMusic(req, res) {
@@ -26,6 +25,9 @@ class HomeController {
             .then(body => {
                 let result = JSON.parse(body);
                 res.render('pages/parts/music/charts', { sharedData : sharedData, resultData: result });
+            })
+            .catch(err => {
+                res.status(200).json({status: 'error', message: err});
             });
         
     }

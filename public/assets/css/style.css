@@ -1,3 +1,19 @@
+.l-container {
+  width: 80%;
+  max-width: 1400px;
+  margin: auto;
+}
+.l-header{
+  height: 50px;
+  width: 100%;
+}
+.l-login {
+  float: right;
+  font-size: 20px;
+}
+.l-body {
+  margin-top: 30px;
+}
 div.box-h180{
   background-size: auto;
   height:  180px;

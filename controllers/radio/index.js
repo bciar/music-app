@@ -5,8 +5,8 @@ const router = express.Router();
 
 const radio = new RadioController();
 
-router.get('/', radio.index.bind(radio));
-router.get('/featured', radio.featured.bind(radio));
-router.get('/genres', radio.genres.bind(radio));
+router.get('/', radio.index);
+router.get('/featured', radio.featured);
+router.get('/genres', radio.genres);
 
 module.exports = router;
