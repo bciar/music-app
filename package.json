@@ -20,6 +20,7 @@
         "fs": "0.0.1-security",
         "http": "0.0.0",
         "jsonwebtoken": "^8.3.0",
+        "localStorage": "^1.0.3",
         "mongoose": "^4.7.4",
         "node-fetch": "^2.2.0",
         "request": "^2.88.0",

@@ -8,13 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="assets/css/login.css">
-
+	<meta name="apple-music-developer-token" content="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY2NThHQTJZNEsifQ.eyJpYXQiOjE1MzYzMTkwMjYsImV4cCI6MTU1MTg3MTAyNiwiaXNzIjoiRlhNSjNUMzc3UiJ9.9BVFJpxYhUa_cmY0NacTivHDQmpmtoifaIaJp6Oi702xaqcS6PQUzL9u-nqV7iKA4CVxruDAdoVb7yXtePl6wg">
+    <meta name="apple-music-app-name" content="adonis">
+    <meta name="apple-music-app-build" content="1">
   
 </head>
 
 <body>
 
-  <form>
+  <div class="login">
 	<div class="svgContainer">
 		<div>
 			<svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -120,7 +122,7 @@
 			</svg>
 		</div>
 	</div>
-	
+<!--	
 	<div class="inputGroup inputGroup1">
 		<label for="loginEmail" id="loginEmailLabel">Email</label>
 		<input type="email" id="loginEmail" maxlength="254" />
@@ -132,11 +134,17 @@
 			<input id="showPasswordCheck" type="checkbox"/>
 			<div class="indicator"></div>
 		</label>
+	</div>-->
+	<div class="inputGroup inputGroup3">
+		<button id="loginwithApple">Login with Apple</button>
 	</div>
 	<div class="inputGroup inputGroup3">
-		<button id="login">Log in</button>
+		<button id="loginwithApple">Login with Sportify</button>
 	</div>	
-</form>
+</div>
+<script src="../assets/vendors/jquery/jquery.min.js"></script>
+<script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+<script src="../assets/js/myplayer.js"></script>
 </body>
 
 </html>

@@ -115,45 +115,48 @@ class MusickitController {
           message: 'Failed to retrieve catalog charts.'
         });
       };
-      body = body.replace('music-videos', 'music_videos');
-      var result = JSON.parse(body);
-      var return_data = {
-        songs: [],
-        albums: [],
-        music_videos: [],
-        playlists: []
+      if(response) {
+        body = body.replace('music-videos', 'music_videos');
+        var result = JSON.parse(body);
+        var return_data = {
+          songs: [],
+          albums: [],
+          music_videos: [],
+          playlists: []
+        }
+        result.results.songs[0].data.forEach(song => {
+          let id = song.id;
+          let name = song.attributes.name;
+          let artistName = song.attributes.artistName;
+          let artwork = song.attributes.artwork;
+          let img_url = artwork.url;
+          img_url = img_url.replace('{w}', artwork.width);
+          img_url = img_url.replace('{h}', artwork.height);
+          return_data.songs.push({id, name, artistName, img_url});
+        });
+        result.results.music_videos[0].data.forEach(music_video => {
+          let id = music_video.id;
+          let name = music_video.attributes.name;
+          let artistName = music_video.attributes.artistName;
+          let artwork = music_video.attributes.artwork;
+          let img_url = artwork.url;
+          img_url = img_url.replace('{w}', artwork.width);
+          img_url = img_url.replace('{h}', artwork.height);
+          return_data.music_videos.push({id, name, artistName, img_url});
+        });
+        result.results.albums[0].data.forEach(album => {
+          let id = album.id;
+          let name = album.attributes.name;
+          let artistName = album.attributes.artistName;
+          let artwork = album.attributes.artwork;
+          let img_url = artwork.url;
+          img_url = img_url.replace('{w}', artwork.width);
+          img_url = img_url.replace('{h}', artwork.height);
+          return_data.albums.push({id, name, artistName, img_url});
+        });
+        res.status(200).send(return_data);
       }
-      result.results.songs[0].data.forEach(song => {
-        let id = song.id;
-        let name = song.attributes.name;
-        let artistName = song.attributes.artistName;
-        let artwork = song.attributes.artwork;
-        let img_url = artwork.url;
-        img_url = img_url.replace('{w}', artwork.width);
-        img_url = img_url.replace('{h}', artwork.height);
-        return_data.songs.push({id, name, artistName, img_url});
-      });
-      result.results.music_videos[0].data.forEach(music_video => {
-        let id = music_video.id;
-        let name = music_video.attributes.name;
-        let artistName = music_video.attributes.artistName;
-        let artwork = music_video.attributes.artwork;
-        let img_url = artwork.url;
-        img_url = img_url.replace('{w}', artwork.width);
-        img_url = img_url.replace('{h}', artwork.height);
-        return_data.music_videos.push({id, name, artistName, img_url});
-      });
-      result.results.albums[0].data.forEach(album => {
-        let id = album.id;
-        let name = album.attributes.name;
-        let artistName = album.attributes.artistName;
-        let artwork = album.attributes.artwork;
-        let img_url = artwork.url;
-        img_url = img_url.replace('{w}', artwork.width);
-        img_url = img_url.replace('{h}', artwork.height);
-        return_data.albums.push({id, name, artistName, img_url});
-      });
-      res.status(200).send(return_data);
+      
     });
 
   }

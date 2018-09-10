@@ -12,12 +12,15 @@
         "algorithm": "HS384",
         "secretKey": "maple-key"
     },
+    "express_session": {
+        "secret" : "maple"
+    },
     "nodemailerObj": {
         "host": "smtp.gmail.com",
         "port": 465,
         "secure": true,
         "auth": {
-            "user": "andreas.klingenberger@gmail.com",
+            "user": "",
             "pass": ""
         }
     }
