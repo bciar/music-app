@@ -254,9 +254,15 @@ jQuery(document).ready(function ($) {
 
   $("#loginwithApple").click(function () {
     applemusic.authorize().then(function (token) {
+      console.log(token);
       $("#token").val(token);
       $("#loginForm").submit();
     });
+  });
+
+  $("#logoutBtn").click(function() {
+    applemusic.unauthorize();
+    window.location.href = '/logout';
   });
 
 });
