@@ -260,9 +260,5 @@ jQuery(document).ready(function ($) {
     });
   });
 
-  $("#logoutBtn").click(function() {
-    applemusic.unauthorize();
-    window.location.href = '/logout';
-  });
 
 });
