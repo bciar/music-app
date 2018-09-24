@@ -1,5 +1,5 @@
-var localStorage = require('localStorage');
 
+const jwt = require('jsonwebtoken');
 var userInfo = {
   loggedin : false,
   token: '',
@@ -27,10 +27,18 @@ class StoreController {
       userInfo.loggedin = true;
       userInfo.token = req.body.token;
       userInfo.mode = 'Apple';
-      localStorage.setItem('userInfo', JSON.stringify(userInfo));
-      res.send('success');
+      let jwtSignData = userInfo
+
+      let jwtSignOptions = {
+          expiresIn: config.jwt.expireTime,
+          algorithm: config.jwt.algorithm
+      };
+
+      let authToken = jwt.sign(jwtSignData, config.jwt.secretKey, jwtSignOptions);
+      res.cookie('token', authToken);
+      res.redirect('/home');
     } else {
-      res.send('false');
+      res.redirect('/login');
     }
   }
 
@@ -40,16 +48,20 @@ class StoreController {
       token: '',
       mode: ''
     };
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    res.redirect('/');
-  }
+    userInfo = {
+      loggedin : false,
+      token: '',
+      mode: ''
+    };
+    let jwtSignData = userInfo
+    let jwtSignOptions = {
+        expiresIn: config.jwt.expireTime,
+        algorithm: config.jwt.algorithm
+    };
 
-  getLoggedinUserInfo() {
-    return new Promise((resolve, reject) => {
-      userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      resolve(userInfo);
-    })
-    
+    let authToken = jwt.sign(jwtSignData, config.jwt.secretKey, jwtSignOptions);
+    res.cookie('token', authToken);
+    res.redirect('/');
   }
 
 }

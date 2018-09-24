@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 // const path = require('path');
 const morgan = require('morgan');
 // const rootPath = path.normalize(__dirname + '/../../');
@@ -21,7 +22,7 @@ module.exports = function (app) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
-
+  app.use(cookieParser());
   app.use('/', router);
   app.engine('ejs', engine);
   app.set('view engine', 'ejs');

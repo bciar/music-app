@@ -122,7 +122,8 @@ class MusickitController {
           songs: [],
           albums: [],
           music_videos: [],
-          playlists: []
+          playlists: [],
+          music_src: 'apple'
         }
         result.results.songs[0].data.forEach(song => {
           let id = song.id;

@@ -8,16 +8,17 @@ class MainController {
     constructor() {}
 
     landing(req, res) {
+        res.render('pages/landing', { sharedData : sharedData});
         let url = apiconfigs.musickit_apiurl + `/getCatalogCharts`;
-        fetch(url)
-            .then(res => res.text())
-            .then(body => {
-               let result = JSON.parse(body);
-               res.render('pages/landing', { sharedData : sharedData, resultData: result });
-            })
-            .catch(err => {
-                res.status(200).json({status: 'error', message: err});
-            });
+        // fetch(url)
+        //     .then(res => res.text())
+        //     .then(body => {
+        //        let result = JSON.parse(body);
+        //        res.render('pages/landing', { sharedData : sharedData, resultData: result });
+        //     })
+        //     .catch(err => {
+        //         res.status(200).json({status: 'error', message: err});
+        //     });
     }
 
     recent(req, res) {

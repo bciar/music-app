@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const MainController = require('../controllers/main.controller');
 const UserController = require('../controllers/user/user.controller');
 const main = new MainController();
@@ -27,19 +28,25 @@ router.use('/api', require('../api'));
 
 
 function userAuth(req, res, next) {
-  user.getLoggedinUserInfo().then(userInfo => {
-    console.log('UserINONONONONONONON');
-    console.log(userInfo);
-    if(userInfo == '' || userInfo == null) {
-      res.redirect('/');
-    }
-    if(userInfo.loggedin == true) {
-      next();  
-    } else {
-      res.redirect('/');
-    }
-  })
   
+  if(req.cookies['token'] != null) {
+    let headerToken = req.cookies['token'];
+    let jwtSecretKey = config.jwt.secretKey;
+    let jwtAlgorithm = { algorithms: config.jwt.algorithm };
+    jwt.verify(headerToken, jwtSecretKey, jwtAlgorithm, (err, decoded) => {
+        if (err) {
+          res.redirect('/login');
+        } else {
+          if(decoded.loggedin == true) {
+            next();
+          } else {
+            res.redirect('/login');
+          }
+        }
+    });
+  } else {
+    res.redirect('/login');
+  }
   
 }
     
