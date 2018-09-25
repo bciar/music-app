@@ -5,47 +5,55 @@ var adonisPlayer = {},
   adonisPlayerContainer = 'adonis_jp_container',
   adonisPlaylist,
   currentPlayMusic;
+currentPlayingMusicIndex = 0;
 currentPlayTime = 0;
 var isPlaying = false;
-var unmutedvolume = 50;
 
 document.addEventListener('musickitloaded', function () {
   applemusic = MusicKit.getInstance();
 });
 
+var getAppleMusicdetail = async function (music_id) {
+  return await applemusic.api.song(music_id).then((res) => {
+    let artwork = res.attributes.artwork;
+    let img_url = artwork.url;
+    img_url = img_url.replace('{w}', artwork.width);
+    img_url = img_url.replace('{h}', artwork.height);
+
+    let song = {
+      src: 'apple',
+      data: {
+        id: music_id,
+        type: 'song',
+        name: res.attributes.name,
+        artistName: res.attributes.artistName,
+        url: res.attributes.url,
+        duration: res.attributes.durationInMillis / 1000,
+        img: img_url
+      }
+    };
+    return song;
+  });
+}
+
 $(document).on("click", ".play-music", function (e) {
   let target = $(e.target);
-  if (typeof target.attr('data-music-id') == 'undefined') target = target.parent();
-  let music_type = target.attr('data-music-type');
-  let music_id = target.attr('data-music-id');
-  let music_src = target.attr('data-music-src');
+  let item = target.parents('.music-img-box');
+  let music_type = item.attr('data-music-type');
+  let music_id = item.attr('data-music-id');
+  let music_src = item.attr('data-music-src');
+  let music_list_index = item.attr('data-playlist-index');
+  if (music_list_index != null) {
+    currentPlayingMusicIndex = music_list_index;
+    adonisPlayer.play();
+  }
   if (music_src == 'apple' && music_type == 'song') {
     //get music Infomation from apple api
-    applemusic.api.song(music_id).then((res) => {
-      let artwork = res.attributes.artwork;
-      let img_url = artwork.url;
-      img_url = img_url.replace('{w}', artwork.width);
-      img_url = img_url.replace('{h}', artwork.height);
-
-      let song = {
-        src: 'apple',
-        data: {
-          id: music_id,
-          type: music_type,
-          name: res.attributes.name,
-          artistName: res.attributes.artistName,
-          url: res.attributes.url,
-          duration: res.attributes.durationInMillis / 1000,
-          img: img_url
-        }
-      };
-      console.log(song);
+    getAppleMusicdetail(music_id).then((song) => {
       adonisAllPlaylists.unshift(song);
+      adonisPlayer.updatePlaylists();
       adonisPlayer.play();
     })
-    //
-
-
   }
 });
 
@@ -68,7 +76,9 @@ jQuery(document).ready(function ($) {
 
   adonisPlayer.play = function () {
     if (adonisAllPlaylists.length == 0) return;
-    currentPlayMusic = adonisAllPlaylists[0];
+    currentPlayMusic = adonisAllPlaylists[currentPlayingMusicIndex];
+    //update playlist
+    adonisPlayer.updatePlaylists();
 
     if (currentPlayMusic.src == 'apple' && currentPlayMusic.data.type == 'song') {
 
@@ -110,6 +120,21 @@ jQuery(document).ready(function ($) {
     }
     isPlaying = false;
     $("#adonis_jp_container").removeClass("jp-state-playing");
+  }
+
+  // update playLists
+  adonisPlayer.updatePlaylists = function () {
+    // $(".jp-playlist")playlist_menu
+    var lists = "";
+    let index = 0;
+    adonisAllPlaylists.forEach(music => {
+      let playcss = '', playanimationcss = '';
+      if (currentPlayingMusicIndex == index) { playcss = ' jp-playlist-current'; playanimationcss = ' playing'; }
+      var list_item = '<li class="item clearfix' + playcss + '"><div class="playlist-item"><div class="img-box music-img-box song-poster" data-playlist-index="' + index + '"><img src="' + music.data.img + '" alt=""><div class="hover-state"><span class="play-btn-dark play-music"><i class="play-icon play-music-list"></i></span></div></div><div class="meta"><span class="now playlist-animate' + playanimationcss + '"><span class="bar n1">A</span><span class="bar n2">B</span><span class="bar n3">c</span></span><div class="hover-state"><div class="d-flex justify-content-end align-items-center"><a href="#" class="mr-2"><span class="adonis-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"height="15" viewBox="0 0 37 32"><path d="M27.379 0c-3.478 0.417-6.509 2.067-8.695 4.492l-0.011 0.012c-2.204-2.428-5.231-4.075-8.638-4.498l-0.068-0.007c-6.232 0-9.966 3.641-9.966 9.756 0.377 3.717 2.096 6.973 4.658 9.327l0.011 0.010 13.001 12.534c0.225 0.231 0.539 0.374 0.886 0.374 0.009 0 0.017-0 0.026-0l-0.001 0c0.004 0 0.010 0 0.015 0 0.35 0 0.667-0.143 0.895-0.373l0-0 13.187-12.511c0-0.187 4.668-4.365 4.668-9.36 0-6.115-3.734-9.756-9.966-9.756zM30.763 17.179l-12.090 11.647-12.114-11.67c-2.066-1.882-3.481-4.446-3.89-7.334l-0.008-0.065c0-5.859 3.968-7.002 7.306-7.002s6.605 3.361 7.679 4.668c0.253 0.283 0.619 0.46 1.027 0.46s0.774-0.177 1.026-0.458l0.001-0.001c1.074-1.284 4.668-4.668 7.679-4.668s7.282 1.237 7.282 7.002c0 3.805-3.851 7.352-3.898 7.422z"></path></svg></span></a><a class="track-menu-playlist" href="#"><i class="icon-dot-nav-horizontal"></i></a></div></div> <span class="jp-time">' + convertToMins(music.data.duration) + '</span></div><a href="javascript:;" class="jp-playlist-item">' + music.data.name + '</a><p class="jp-artist"><a href="#link1">' + music.data.artistName + '</a></p></div></li>';
+      lists += list_item;
+      index++;
+    });
+    $("#playlist_menu").html(lists);
   }
 
   function convertToMins(secs) {
@@ -237,10 +262,9 @@ jQuery(document).ready(function ($) {
 
     $(".jp-volume-bar-value").attr('style', 'width:' + v + '%;');
     //set audio volume
-    
-    if(document.querySelector("audio") != null)
-      document.querySelector("audio").volume = v/100;
 
+    if (document.querySelector("audio") != null)
+      document.querySelector("audio").volume = v / 100;
   };
 
   $('.adonis-mute-control').click(function () {
@@ -258,27 +282,7 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  // update playLists
-  // function updatePlaylists() {
-  //   // $(".jp-playlist")
-  //   var lists = "";
-  //   adonisAllPlaylists.forEach(music => {
-  //     var list_item = '
-  //     <li class="item clearfix" id="id-2c0gso77zur">
-  //       <div class="playlist-item">
-  //         <div class="img-box music-img-box song-poster"><img src="' + music.data.img + '" alt=""><div class="hover-state"><span class="play-btn-dark"><i class="play-icon play-music-list"></i></span></div>
-  //         </div>
-  //         <div class="meta"><span class="now playlist-animate playing"><span class="bar n1">A</span><span class="bar n2">B</span><span class="bar n3">c</span></span><div class="hover-state">
-  //             <div class="d-flex justify-content-end align-items-center"><a href="#" class="mr-2"><span class="adonis-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
-  //                     height="15" viewBox="0 0 37 32"><path d="M27.379 0c-3.478 0.417-6.509 2.067-8.695 4.492l-0.011 0.012c-2.204-2.428-5.231-4.075-8.638-4.498l-0.068-0.007c-6.232 0-9.966 3.641-9.966 9.756 0.377 3.717 2.096 6.973 4.658 9.327l0.011 0.010 13.001 12.534c0.225 0.231 0.539 0.374 0.886 0.374 0.009 0 0.017-0 0.026-0l-0.001 0c0.004 0 0.010 0 0.015 0 0.35 0 0.667-0.143 0.895-0.373l0-0 13.187-12.511c0-0.187 4.668-4.365 4.668-9.36 0-6.115-3.734-9.756-9.966-9.756zM30.763 17.179l-12.090 11.647-12.114-11.67c-2.066-1.882-3.481-4.446-3.89-7.334l-0.008-0.065c0-5.859 3.968-7.002 7.306-7.002s6.605 3.361 7.679 4.668c0.253 0.283 0.619 0.46 1.027 0.46s0.774-0.177 1.026-0.458l0.001-0.001c1.074-1.284 4.668-4.668 7.679-4.668s7.282 1.237 7.282 7.002c0 3.805-3.851 7.352-3.898 7.422z"></path></svg></span></a><a
-  //                 class="track-menu-playlist" href="#"><i class="icon-dot-nav-horizontal"></i></a></div>
-  //           </div> <span class="jp-time">0:20</span></div><a href="javascript:;" class="jp-playlist-item">Dat Step</a><p class="jp-artist"><a
-  //             href="#link1">Gunnar Olsen</a></p>
-  //       </div>
-  //     </li>
-  //     ';
-  //   });
-  // }
+
 
 
   $(window).imagesLoaded(function () {
@@ -295,5 +299,23 @@ jQuery(document).ready(function ($) {
     });
   });
 
+
+  // control menu items
+  $(document).on("click", ".dropdown-item", function (e) {
+    let target = $(e.target);
+    if (target.html() == 'Add to Next Up') {
+      let item = clickedItemforDropMenu;
+      let music_type = item.attr('data-music-type');
+      let music_id = item.attr('data-music-id');
+      let music_src = item.attr('data-music-src');
+      if (music_src == 'apple' && music_type == 'song') {
+        //get music Infomation from apple api
+        getAppleMusicdetail(music_id).then((song) => {
+          adonisAllPlaylists.push(song);
+          adonisPlayer.updatePlaylists();
+        })
+      }
+    }
+  })
 
 });
