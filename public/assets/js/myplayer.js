@@ -236,6 +236,10 @@ jQuery(document).ready(function ($) {
   var setVolumn = function (v) { //percentage
 
     $(".jp-volume-bar-value").attr('style', 'width:' + v + '%;');
+    //set audio volume
+    
+    if(document.querySelector("audio") != null)
+      document.querySelector("audio").volume = v/100;
 
   };
 
