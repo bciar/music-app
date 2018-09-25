@@ -7,15 +7,18 @@ var adonisPlayer = {},
   currentPlayMusic;
 currentPlayTime = 0;
 var isPlaying = false;
+var unmutedvolume = 50;
 
 document.addEventListener('musickitloaded', function () {
   applemusic = MusicKit.getInstance();
 });
 
 $(document).on("click", ".play-music", function (e) {
-  let music_type = $(e.target).attr('data-music-type');
-  let music_id = $(e.target).attr('data-music-id');
-  let music_src = $(e.target).attr('data-music-src');
+  let target = $(e.target);
+  if (typeof target.attr('data-music-id') == 'undefined') target = target.parent();
+  let music_type = target.attr('data-music-type');
+  let music_id = target.attr('data-music-id');
+  let music_src = target.attr('data-music-src');
   if (music_src == 'apple' && music_type == 'song') {
     //get music Infomation from apple api
     applemusic.api.song(music_id).then((res) => {
@@ -60,6 +63,7 @@ jQuery(document).ready(function ($) {
   "use strict";
 
   adonisPlayer.init = function () {
+
   }
 
   adonisPlayer.play = function () {
@@ -219,9 +223,36 @@ jQuery(document).ready(function ($) {
     if (percentage < 0) {
       percentage = 0;
     }
-    $(".jp-volume-bar-value").attr('style', 'width:'+percentage+'%;');
-    // $("#" + adonisPlayerID).jPlayer("volume", (percentage / 100));
+    setVolumn(percentage);
+
+    var muteControl = $('.adonis-mute-control');
+    muteControl.attr('data-volume', percentage / 100);
+    if (muteControl.hasClass('muted')) {
+      muteControl.removeClass('muted');
+      $('#adonis_jp_container').removeClass('jp-state-muted');
+    }
   };
+
+  var setVolumn = function (v) { //percentage
+
+    $(".jp-volume-bar-value").attr('style', 'width:' + v + '%;');
+
+  };
+
+  $('.adonis-mute-control').click(function () {
+    var muteControl = $(this);
+
+    if (muteControl.hasClass('muted')) {
+      var volume = muteControl.attr('data-volume');
+      muteControl.removeClass('muted');
+      $('#adonis_jp_container').removeClass('jp-state-muted');
+      setVolumn(volume * 100);
+    } else {
+      muteControl.addClass('muted');
+      $('#adonis_jp_container').addClass('jp-state-muted');
+      setVolumn(0);
+    }
+  });
 
   // update playLists
   // function updatePlaylists() {
