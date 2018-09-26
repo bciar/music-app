@@ -69,17 +69,22 @@ $(document).on("click", ".jp-play", function (e) {
 });
 
 $(document).on("click", ".jp-previous", function (e) {
-  if(currentPlayingMusicIndex == 0) currentPlayingMusicIndex = adonisAllPlaylists.length - 1;
+  if (currentPlayingMusicIndex == 0) currentPlayingMusicIndex = adonisAllPlaylists.length - 1;
   else currentPlayingMusicIndex--;
   adonisPlayer.play();
 });
 
 $(document).on("click", ".jp-next", function (e) {
-  if(currentPlayingMusicIndex == adonisAllPlaylists.length - 1) currentPlayingMusicIndex = 0;
+  if (currentPlayingMusicIndex == adonisAllPlaylists.length - 1) currentPlayingMusicIndex = 0;
   else currentPlayingMusicIndex++;
   adonisPlayer.play();
 });
-
+$(document).on("click", ".jp-shuffle", function (e) {
+  playingMode = 'shuffle';
+});
+$(document).on("click", ".jp-repeat", function (e) {
+  playingMode = 'repeat';
+});
 jQuery(document).ready(function ($) {
   "use strict";
 
@@ -135,6 +140,20 @@ jQuery(document).ready(function ($) {
     $("#adonis_jp_container").removeClass("jp-state-playing");
   }
 
+  adonisPlayer.playNext = function () {
+    if (playingMode == 'shuffle') {
+      let index = Math.floor(Math.random() * adonisAllPlaylists.length);
+      if (index == currentPlayingMusicIndex)
+        index = Math.floor(Math.random() * adonisAllPlaylists.length);
+      currentPlayingMusicIndex = index;
+      adonisPlayer.play();
+    } else if (playingMode == 'repeat') {
+      currentPlayingMusicIndex++;
+      if (currentPlayingMusicIndex == adonisAllPlaylists.length) currentPlayingMusicIndex = 0;
+      adonisPlayer.play();
+    }
+  }
+
   // update playLists
   adonisPlayer.updatePlaylists = function () {
     // $(".jp-playlist")playlist_menu
@@ -167,6 +186,9 @@ jQuery(document).ready(function ($) {
     updatebar(percentage);
     if (isPlaying && currentPlayTime < maxtime) {
       setTimeout(showingTimeAndProgress, 1000);
+    }
+    if (currentPlayTime >= maxtime) {
+      adonisPlayer.playNext();
     }
   }
 
