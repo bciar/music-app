@@ -67,6 +67,18 @@ $(document).on("click", ".jp-play", function (e) {
 
 });
 
+$(document).on("click", ".jp-previous", function (e) {
+  if(currentPlayingMusicIndex == 0) currentPlayingMusicIndex = adonisAllPlaylists.length - 1;
+  else currentPlayingMusicIndex--;
+  adonisPlayer.play();
+});
+
+$(document).on("click", ".jp-next", function (e) {
+  if(currentPlayingMusicIndex == adonisAllPlaylists.length - 1) currentPlayingMusicIndex = 0;
+  else currentPlayingMusicIndex++;
+  adonisPlayer.play();
+});
+
 jQuery(document).ready(function ($) {
   "use strict";
 
