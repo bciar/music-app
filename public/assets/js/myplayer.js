@@ -8,6 +8,7 @@ var adonisPlayer = {},
 currentPlayingMusicIndex = 0;
 currentPlayTime = 0;
 var isPlaying = false;
+var playingMode = '';
 
 document.addEventListener('musickitloaded', function () {
   applemusic = MusicKit.getInstance();
