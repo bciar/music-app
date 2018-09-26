@@ -81,9 +81,13 @@ $(document).on("click", ".jp-next", function (e) {
 });
 $(document).on("click", ".jp-shuffle", function (e) {
   playingMode = 'shuffle';
+  $(".jp-shuffle").addClass("jp-playmode");
+  $(".jp-repeat").removeClass("jp-playmode");
 });
 $(document).on("click", ".jp-repeat", function (e) {
   playingMode = 'repeat';
+  $(".jp-shuffle").removeClass("jp-playmode");
+  $(".jp-repeat").addClass("jp-playmode");
 });
 jQuery(document).ready(function ($) {
   "use strict";
@@ -149,9 +153,18 @@ jQuery(document).ready(function ($) {
       adonisPlayer.play();
     } else if (playingMode == 'repeat') {
       currentPlayingMusicIndex++;
-      if (currentPlayingMusicIndex == adonisAllPlaylists.length) currentPlayingMusicIndex = 0;
+      if (currentPlayingMusicIndex == adonisAllPlaylists.length) { currentPlayingMusicIndex = 0; }
       adonisPlayer.play();
+    } else {
+      if (currentPlayingMusicIndex == adonisAllPlaylists.length - 1) { applemusic.player.stop(); }
+      else {
+        currentPlayingMusicIndex++;
+        adonisPlayer.play();
+      }
+
     }
+
+
   }
 
   // update playLists
@@ -338,11 +351,12 @@ jQuery(document).ready(function ($) {
   // control menu items
   $(document).on("click", ".dropdown-item", function (e) {
     let target = $(e.target);
+    let item = clickedItemforDropMenu;
+    let music_type = item.attr('data-music-type');
+    let music_id = item.attr('data-music-id');
+    let music_src = item.attr('data-music-src');
+
     if (target.html() == 'Add to Next Up') {
-      let item = clickedItemforDropMenu;
-      let music_type = item.attr('data-music-type');
-      let music_id = item.attr('data-music-id');
-      let music_src = item.attr('data-music-src');
       if (music_src == 'apple' && music_type == 'song') {
         //get music Infomation from apple api
         getAppleMusicdetail(music_id).then((song) => {
@@ -351,6 +365,22 @@ jQuery(document).ready(function ($) {
         })
       }
     }
-  })
+    else if (target.html() == 'Add to Playlist') {
+      let url = '/home/music/playlist';
+      $.ajax({
+        url: url,
+        method: 'POST',
+        crossDomain: true,
+        data: {
+          music_id: music_id,
+          music_src: music_src,
+          music_type: music_type
+        },
+        success: function (res) {
+          // console.log(res);
+        }
+      })
+    }
+  });
 
 });

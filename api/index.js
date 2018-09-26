@@ -9,7 +9,7 @@ const spotify = new SpotifyController;
 
 router.get('/musickit', musickit.index);
 router.get('/musickit/getAStorefront', musickit.getAStorefront);
-
+router.post('/musickit/putPlaylist', musickit.putPlaylist);
 router.get('/musickit/getCatalogCharts', musickit.getCatalogCharts);
 router.get('/musickit/searchCatalogResources', musickit.searchCatalogResources);
 router.get('/musickit/searchLibraryResources', musickit.searchLibraryResources);

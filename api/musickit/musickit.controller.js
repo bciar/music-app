@@ -17,7 +17,8 @@ const url_getCatalogVideoRelationship = `https://api.music.apple.com/v1/catalog/
 const url_getMultipleCatalogVideosById = `https://api.music.apple.com/v1/catalog/{storefront}/music-videos`; //Get Multiple Catalog Music Videos by ID
 const url_getMultipleCatalogVideosByISRC = `https://api.music.apple.com/v1/catalog/{storefront}/music-videos`; //Get Multiple Catalog Music Videos by ISRC
 // -------------- Fetch Playlists  -------------------------- 
-
+const url_getPlaylist = `https://api.music.apple.com/v1/me/library/playlists`; //Get All Library Playlists
+const url_createPlaylist = `https://api.music.apple.com/v1/me/library/playlists`;//Create a New Library Playlist
 // -------------- Fetch Songs  -------------------------- 
 
 // -------------- Fetch Stations  -------------------------- 
@@ -94,17 +95,80 @@ class MusickitController {
 
   }
 
+  putPlaylist(req, res) {
+    let music_id = req.body.music_id;
+    let music_type = req.body.music_type;
+
+    var options = {
+      method: 'GET',
+      url: url_getPlaylist,
+      headers:
+      {
+        authorization: 'Bearer ' + api_configs.appleJWT
+      }
+    };
+    request(options, function (error, response, body) {
+      if (error) {
+        console.log(error)
+        res.status(404).json({ status: 'Error', message: 'Oops. Something Wrong.' })
+      } else {
+        console.log("---------------- putPlaylist -----------------");
+        console.log(response.body);
+        if (body == '') {
+          //create new playlist
+          request({
+            method: 'POST',
+            url: url_createPlaylist,
+            headers: { authorization: 'Bearer ' + api_configs.appleJWT },
+            json: true,
+            body: {
+              attributes: {
+                name: 'Playlist',
+                description: 'Playlist'
+              },
+              relationships: {
+                tracks: {
+                  data: [
+                    {
+                      id: music_id,
+                      type: music_type + 's'
+                    }
+                  ]
+                }
+              }
+            }
+          }, function (error2, response2, body2) {
+            if (error2) {
+              console.log("error in creating new playlist");
+              console.log(error2)
+            } else {
+              console.log("success in creating new playlist");
+              console.log(response2.body);
+              res.status(200).json({ status: 'OK' });
+            }
+
+          })
+        } else {
+          console.log("current playlists");
+          console.log(body);
+        }
+      }
+
+
+    });
+  }
+
   //Get Catalog Charts
   //Fetch one or more charts from the Apple Music Catalog.
   getCatalogCharts(req, res) {
 
-    var options = { 
+    var options = {
       method: 'GET',
-      url: url_getCatalogCharts + `?types=songs,albums,music-videos,playlists&genre=20&limit=20`,
-      headers: 
-      { 
+      url: url_getCatalogCharts + `?types=songs,albums,music-videos&genre=20&limit=20`,
+      headers:
+      {
         authorization: 'Bearer ' + api_configs.appleJWT
-      } 
+      }
     };
 
     request(options, function (error, response, body) {
@@ -115,7 +179,7 @@ class MusickitController {
           message: 'Failed to retrieve catalog charts.'
         });
       };
-      if(response) {
+      if (response) {
         body = body.replace('music-videos', 'music_videos');
         var result = JSON.parse(body);
         var return_data = {
@@ -133,7 +197,7 @@ class MusickitController {
           let img_url = artwork.url;
           img_url = img_url.replace('{w}', artwork.width);
           img_url = img_url.replace('{h}', artwork.height);
-          return_data.songs.push({id, name, artistName, img_url});
+          return_data.songs.push({ id, name, artistName, img_url });
         });
         result.results.music_videos[0].data.forEach(music_video => {
           let id = music_video.id;
@@ -143,7 +207,7 @@ class MusickitController {
           let img_url = artwork.url;
           img_url = img_url.replace('{w}', artwork.width);
           img_url = img_url.replace('{h}', artwork.height);
-          return_data.music_videos.push({id, name, artistName, img_url});
+          return_data.music_videos.push({ id, name, artistName, img_url });
         });
         result.results.albums[0].data.forEach(album => {
           let id = album.id;
@@ -153,11 +217,11 @@ class MusickitController {
           let img_url = artwork.url;
           img_url = img_url.replace('{w}', artwork.width);
           img_url = img_url.replace('{h}', artwork.height);
-          return_data.albums.push({id, name, artistName, img_url});
+          return_data.albums.push({ id, name, artistName, img_url });
         });
         res.status(200).send(return_data);
       }
-      
+
     });
 
   }
@@ -168,10 +232,10 @@ class MusickitController {
     var options = {
       method: 'GET',
       url: url_searchCatalogResources + `?term=james+brown&limit=2&types=artists,albums`,
-      headers: 
-      { 
+      headers:
+      {
         authorization: 'Bearer ' + api_configs.appleJWT
-      } 
+      }
     };
     request(options, function (error, response, body) {
       if (error) {
@@ -191,10 +255,10 @@ class MusickitController {
     var options = {
       method: 'GET',
       url: url_searchLibraryResources + `?term=U2&types=library-artists`,
-      headers: 
-      { 
+      headers:
+      {
         authorization: 'Bearer ' + api_configs.appleJWT
-      } 
+      }
     };
     request(options, function (error, response, body) {
       if (error) {
@@ -214,10 +278,10 @@ class MusickitController {
     var options = {
       method: 'GET',
       url: url_getCatalogSearchHints + `?term=love&limit=10`,
-      headers: 
-      { 
+      headers:
+      {
         authorization: 'Bearer ' + api_configs.appleJWT
-      } 
+      }
     };
     request(options, function (error, response, body) {
       if (error) {
