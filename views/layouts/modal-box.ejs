@@ -1,0 +1,46 @@
+<div class="modal fade" id="addtoPlaylistModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add to Playlist</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <form action="/home/music/playlist/addmusic" id="playlistForm" method="post">
+        <input name="music_id" id="playlist_modal_music_id" type="hidden" value="">
+        <input name="music_src" id="playlist_modal_music_src" type="hidden" value="">
+        <input name="music_type" id="playlist_modal_music_type" type="hidden" value="">
+        <input name="music_user_token"  id="playlist_modal_token" type="hidden" value="">
+        <input name="mode"  id="playlist_modal_mode" type="hidden" value="">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="playlist_ids_select">Select Playlist:</label>
+            <select id="playlist_ids_select" class="form-control" name="playlist_id">
+            </select>
+          </div>
+          <div style="display:none;" id="create_new_playlist_form">
+            <div class="form-group">
+                <h5>Create New Playlist</h5>
+            </div>
+            <div class="form-group">
+              <label for="playlistName">Playlist Name:</label>
+              <input type="input" class="form-control" id="playlistName" placeholder="Playlist Name" name="playlistName" required>
+            </div>
+            <div class="form-group">
+              <label for="playlistDescription">Playlist Description:</label>
+              <input type="input" class="form-control" id="playlistDescription" placeholder="Playlist Description" name="playlistDescription" required>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" id="addPlaylistSubmit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

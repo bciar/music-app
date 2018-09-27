@@ -356,6 +356,7 @@ jQuery(document).ready(function ($) {
     let music_type = item.attr('data-music-type');
     let music_id = item.attr('data-music-id');
     let music_src = item.attr('data-music-src');
+    let token = localStorage.getItem('token');
 
     if (target.html() == 'Add to Next Up') {
       if (music_src == 'apple' && music_type == 'song') {
@@ -367,23 +368,79 @@ jQuery(document).ready(function ($) {
       }
     }
     else if (target.html() == 'Add to Playlist') {
-      let url = '/home/music/playlist';
-      let token = localStorage.getItem('token');
+      
+      
+
+      let url = '/home/music/playlist/getlists';
+      //get all playlists
       $.ajax({
         url: url,
         method: 'POST',
         crossDomain: true,
         data: {
-          music_id: music_id,
-          music_src: music_src,
-          music_type: music_type,
-          music_user_token: token
+          music_user_token: token,
+          music_src: music_src
         },
-        success: function (res) {
-          // console.log(res);
+        success: function(res) {
+          let data = res.data;
+          let options = '';
+          data = JSON.parse(data);
+          if(data.length > 0) {
+            data.forEach(playlist => {
+              let id = playlist.id;
+              let name = playlist.name;
+              let description = playlist.description;
+              let item = '<option value="'+id+'">'+name+' ('+description+' )</option>';
+              options = options + item;
+            });
+          }
+          options = options + '<option value="">Create New Playlist</option>';
+          $("#playlist_modal_music_id").val(music_id);
+          $("#playlist_modal_music_src").val(music_src);
+          $("#playlist_modal_music_type").val(music_type);
+          $("#playlist_modal_token").val(token);
+          $("#playlist_ids_select").html(options);
         }
-      })
+      });
+
+      $("#addtoPlaylistModal").modal();
     }
   });
+
+// ------------------------ playlist ------------------------------
+$("#playlist_ids_select").change(function() {
+  let value = $("#playlist_ids_select").val();
+  if(value=='') {
+    $("#create_new_playlist_form").attr("style", "display: block;");
+    $("#playlist_modal_mode").val('create');
+  } else {
+    $("#create_new_playlist_form").attr("style", "display: none;");
+    $("#playlist_modal_mode").val('add');
+  }
+})
+
+$("#addPlaylistSubmit").click(function() {
+  let music_id = $("#playlist_modal_music_id").val();
+  let music_src = $("#playlist_modal_music_src").val();
+  let music_type = $("#playlist_modal_music_type").val();
+  let music_user_token = $("#playlist_modal_token").val();
+  let mode = $("#playlist_modal_mode").val();
+  let playlist_id = $("#playlist_ids_select").val();
+  let playlistName = $("#playlistName").val();
+  let playlistDescription = $("#playlistDescription").val();
+  if(!playlistName || !playlistDescription) return;
+  $.ajax({
+    url: '/home/music/playlist/addmusic',
+    method: 'POST',
+    crossDomain: true,
+    data: {
+      music_id, music_src, music_type, music_user_token, mode, playlist_id, playlistName, playlistDescription
+    },
+    success: function(res) {
+      $("#addtoPlaylistModal").modal('toggle');
+    }
+  })
+})
+
 
 });

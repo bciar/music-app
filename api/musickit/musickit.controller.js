@@ -17,8 +17,7 @@ const url_getCatalogVideoRelationship = `https://api.music.apple.com/v1/catalog/
 const url_getMultipleCatalogVideosById = `https://api.music.apple.com/v1/catalog/{storefront}/music-videos`; //Get Multiple Catalog Music Videos by ID
 const url_getMultipleCatalogVideosByISRC = `https://api.music.apple.com/v1/catalog/{storefront}/music-videos`; //Get Multiple Catalog Music Videos by ISRC
 // -------------- Fetch Playlists  -------------------------- 
-const url_getPlaylist = `https://api.music.apple.com/v1/me/library/playlists`; //Get All Library Playlists
-const url_createPlaylist = `https://api.music.apple.com/v1/me/library/playlists`;//Create a New Library Playlist
+const url_Playlist = `https://api.music.apple.com/v1/me/library/playlists`; //Get All Library Playlists
 // -------------- Fetch Songs  -------------------------- 
 
 // -------------- Fetch Stations  -------------------------- 
@@ -95,16 +94,11 @@ class MusickitController {
 
   }
 
-  putPlaylist(req, res) {
-    let music_id = req.body.music_id;
-    let music_type = req.body.music_type;
+  getPlaylists(req, res) {
     let music_user_token = req.body.music_user_token;
-    console.log("user music token");
-    console.log(music_user_token);
-
     var options = {
       method: 'GET',
-      url: url_getPlaylist,
+      url: url_Playlist,
       headers:
       {
         'Authorization': 'Bearer ' + api_configs.appleJWT,
@@ -113,56 +107,111 @@ class MusickitController {
     };
     request(options, function (error, response, body) {
       if (error) {
-        console.log(error)
+        console.log("error in getting playlists");
         res.status(404).json({ status: 'Error', message: 'Oops. Something Wrong.' })
       } else {
-        console.log("---------------- putPlaylist -----------------");
-        console.log(response.body);
-        if (body == '') {
-          //create new playlist
-          request({
-            method: 'POST',
-            url: url_createPlaylist,
-            headers: {
-              'Authorization': 'Bearer ' + api_configs.appleJWT,
-              'Music-User-Token': music_user_token
-            },
-            json: true,
-            body: {
-              attributes: {
-                name: 'Playlist',
-                description: 'Playlist'
-              },
-              relationships: {
-                tracks: {
-                  data: [
-                    {
-                      id: music_id,
-                      type: music_type + 's'
-                    }
-                  ]
-                }
-              }
-            }
-          }, function (error2, response2, body2) {
-            if (error2) {
-              console.log("error in creating new playlist");
-              console.log(error2)
-            } else {
-              console.log("success in creating new playlist");
-              console.log(response2.body);
-              res.status(200).json({ status: 'OK' });
-            }
+        console.log("success in getting playlists");
+        body = JSON.parse(body);
+        let result = [];
+        body.data.forEach(playlist => {
+            let id = playlist.id;
+            let name = playlist.attributes.name;
+            let description = playlist.attributes.description.standard;
+            result.push({
+              id: id,
+              name: name,
+              description: description
+            });
+        });
+        res.status(200).send(result);
+      }
+    });
+  }
 
-          })
-        } else {
-          console.log("current playlists");
-          console.log(body);
+  addPlaylist(req, res) {
+    let music_id = req.body.music_id;
+    let music_type = req.body.music_type;
+    let playlist_id = req.body.playlist_id;
+    let music_user_token = req.body.music_user_token;
+
+    request({
+      method: 'POST',
+      url: url_Playlist + '/' + playlist_id + '/tracks',
+      headers: {
+        'Authorization': 'Bearer ' + api_configs.appleJWT,
+        'Music-User-Token': music_user_token
+      },
+      json: true,
+      body: {
+        attributes: {
+          name: 'Playlist',
+          description: 'Playlist'
+        },
+        relationships: {
+          tracks: {
+            data: [
+              {
+                id: music_id,
+                type: music_type + 's'
+              }
+            ]
+          }
         }
       }
+    }, function (error, response, body) {
+      if (error) {
+        console.log("error in adding new playlist");
+        res.status(404).json({ status: 'error', message: 'Oops. Something Wrong.' })
+      } else {
+        console.log("success in adding new playlist");
+        res.status(200).json({ status: 'OK', data: body });
+      }
 
+    })
+  }
 
-    });
+  createPlaylist(req, res) {
+
+    let music_id = req.body.music_id;
+    let music_type = req.body.music_type;
+    let music_user_token = req.body.music_user_token;
+    let playlistName = req.body.playlistName;
+    let playlistDescription = req.body.playlistDescription;
+
+    request({
+      method: 'POST',
+      url: url_Playlist,
+      headers: {
+        'Authorization': 'Bearer ' + api_configs.appleJWT,
+        'Music-User-Token': music_user_token
+      },
+      json: true,
+      body: {
+        attributes: {
+          name: playlistName,
+          description: playlistDescription
+        },
+        relationships: {
+          tracks: {
+            data: [
+              {
+                id: music_id,
+                type: music_type + 's'
+              }
+            ]
+          }
+        }
+      }
+    }, function (error, response, body) {
+      if (error) {
+        console.log("error in creating new playlist");
+        res.status(404).json({ status: 'error', message: 'Oops. Something Wrong.' })
+      } else {
+        console.log("success in creating new playlist");
+        res.status(200).json({ status: 'OK', data: body });
+      }
+
+    })
   }
 
   //Get Catalog Charts
