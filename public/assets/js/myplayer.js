@@ -342,6 +342,7 @@ jQuery(document).ready(function ($) {
   $("#loginwithApple").click(function () {
     applemusic.authorize().then(function (token) {
       console.log(token);
+      localStorage.setItem('token', token);
       $("#token").val(token);
       $("#loginForm").submit();
     });
@@ -367,6 +368,7 @@ jQuery(document).ready(function ($) {
     }
     else if (target.html() == 'Add to Playlist') {
       let url = '/home/music/playlist';
+      let token = localStorage.getItem('token');
       $.ajax({
         url: url,
         method: 'POST',
@@ -374,7 +376,8 @@ jQuery(document).ready(function ($) {
         data: {
           music_id: music_id,
           music_src: music_src,
-          music_type: music_type
+          music_type: music_type,
+          music_user_token: token
         },
         success: function (res) {
           // console.log(res);

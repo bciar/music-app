@@ -22,6 +22,7 @@ class HomeController {
         let music_id = req.body.music_id;
         let music_src = req.body.music_src;
         let music_type = req.body.music_type;
+        let music_user_token = req.body.music_user_token;
         if (!music_id || !music_src) res.status(401).json({ status: 'error', message: 'parameter error.' });
         if (music_src == 'apple') {
             //save playlist to apple
@@ -32,7 +33,8 @@ class HomeController {
                     method: 'POST',
                     body: JSON.stringify({
                         music_id: music_id,
-                        music_type: music_type
+                        music_type: music_type,
+                        music_user_token: music_user_token
                     }),
                     headers: { 'Content-Type': 'application/json' },
                 }

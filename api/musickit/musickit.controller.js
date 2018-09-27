@@ -98,13 +98,17 @@ class MusickitController {
   putPlaylist(req, res) {
     let music_id = req.body.music_id;
     let music_type = req.body.music_type;
+    let music_user_token = req.body.music_user_token;
+    console.log("user music token");
+    console.log(music_user_token);
 
     var options = {
       method: 'GET',
       url: url_getPlaylist,
       headers:
       {
-        authorization: 'Bearer ' + api_configs.appleJWT
+        'Authorization': 'Bearer ' + api_configs.appleJWT,
+        'Music-User-Token': music_user_token
       }
     };
     request(options, function (error, response, body) {
@@ -119,7 +123,10 @@ class MusickitController {
           request({
             method: 'POST',
             url: url_createPlaylist,
-            headers: { authorization: 'Bearer ' + api_configs.appleJWT },
+            headers: {
+              'Authorization': 'Bearer ' + api_configs.appleJWT,
+              'Music-User-Token': music_user_token
+            },
             json: true,
             body: {
               attributes: {
