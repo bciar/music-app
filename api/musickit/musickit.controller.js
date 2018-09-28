@@ -143,20 +143,12 @@ class MusickitController {
       },
       json: true,
       body: {
-        attributes: {
-          name: 'Playlist',
-          description: 'Playlist'
-        },
-        relationships: {
-          tracks: {
             data: [
               {
                 id: music_id,
                 type: music_type + 's'
               }
             ]
-          }
-        }
       }
     }, function (error, response, body) {
       if (error) {
@@ -164,6 +156,7 @@ class MusickitController {
         res.status(404).json({ status: 'error', message: 'Oops. Something Wrong.' })
       } else {
         console.log("success in adding new playlist");
+        console.log(body);
         res.status(200).json({ status: 'OK', data: body });
       }
 
@@ -208,6 +201,30 @@ class MusickitController {
         res.status(404).json({ status: 'error', message: 'Oops. Something Wrong.' })
       } else {
         console.log("success in creating new playlist");
+        res.status(200).json({ status: 'OK', data: body });
+      }
+
+    })
+  }
+
+  getlistByid(req, res) {
+    let playlist_id = req.body.playlist_id;
+    let music_user_token = req.body.music_user_token;
+
+    request({
+      method: 'GET',
+      url: url_Playlist+`/`+playlist_id,
+      headers: {
+        'Authorization': 'Bearer ' + api_configs.appleJWT,
+        'Music-User-Token': music_user_token
+      }
+    }, function (error, response, body) {
+      if (error) {
+        console.log("error in getting playlist info.");
+        res.status(404).json({ status: 'error', message: 'Oops. Something Wrong.' })
+      } else {
+        console.log("success in getting playlist info.");
+        console.log(body);
         res.status(200).json({ status: 'OK', data: body });
       }
 

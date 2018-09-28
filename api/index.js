@@ -13,6 +13,7 @@ router.get('/musickit/getAStorefront', musickit.getAStorefront);
 router.post('/musickit/createPlaylist', musickit.createPlaylist);
 router.post('/musickit/addPlaylist', musickit.addPlaylist);
 router.post('/musickit/getPlaylists', musickit.getPlaylists);
+router.post('/musickit/getPlaylistByid', musickit.getlistByid);
 
 router.get('/musickit/getCatalogCharts', musickit.getCatalogCharts);
 

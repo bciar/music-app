@@ -54,6 +54,7 @@ class HomeController {
     }
 
     addMusicToPlaylist(req, res) {
+        
         let music_id = req.body.music_id;
         let music_src = req.body.music_src;
         let music_type = req.body.music_type;
@@ -118,19 +119,28 @@ class HomeController {
     }
 
     getPlaylistById(req, res) {
-        let id = req.params.id;
-        let music_src = req.params.music_src;
-        if(music_src == 'apple') {
-            let url = apiconfigs.musickit_apiurl + `/`;
-            fetch(url)
-            .then(res => res.text())
-            .then(body => {
-                let result = JSON.parse(body);
-                // res.render('pages/parts/music/charts', { sharedData: sharedData, resultData: result });
-            })
-            .catch(err => {
-                res.status(200).json({ status: 'error', message: err });
-            });
+        let playlist_id = req.body.playlist_id;
+        let music_src = req.body.music_src;
+        let music_user_token = req.body.music_user_token;
+
+        if (music_src == 'apple') {
+            let url = apiconfigs.musickit_apiurl + `/getPlaylistByid`;
+            fetch(
+                url,
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        playlist_id, music_user_token
+                    }),
+                    headers: { 'Content-Type': 'application/json' },
+                }
+            )
+                .then((response) => {
+                    res.status(200).json({ status: 'success', data: response });
+                })
+                .catch((err) => {
+                    res.status(404).json({ status: 'error', message: 'Internal server error.' });
+                });
         } else {
             res.status(200).send("ok");
         }

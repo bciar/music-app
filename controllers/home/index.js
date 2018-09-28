@@ -14,6 +14,4 @@ router.get('/music/charts', home.charts.bind(home));
 router.get('/music/genres', home.genres);
 router.get('/music/videos', home.videos);
 
-router.get('/playlist/:music_src/:id', home.getPlaylistById);
-
 module.exports = router;

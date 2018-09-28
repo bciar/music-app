@@ -1,0 +1,36 @@
+<% layout('../layouts/app') -%>
+<section>
+    <div class="title-box">
+        <h2 class="title h3-md"><%= resultData.title %> playlist</h2>
+    </div>
+    <div id="browse-new-playlist-2" class="row  auto-fit-columns" data-item-width="165" data-item-max-width="175">
+    <% for(let i = 0; i < resultData.data.length ; i++) { 
+        let img_src = resultData.data[i].img_url;
+        let name = resultData.data[i].name;
+        let artistName = resultData.data[i].artistName;
+        let id = resultData.data[i].id;
+        let music_src = resultData.data[i].music_src;
+        let music_type = resultData.data[i].music_type;
+    %>
+        <div class="col-auto">
+            <div class="music-img-box mb-e-30 mb-e-lg-40"  data-music-type="<%=music_type%>" data-music-src="<%=music_src%>"  data-music-id="<%=id%>">
+                <div class="img-box box-rounded-md img-box-md">
+                    <img class="retina" src="<%=img_src%>" data-2x="assets/images/playlists/playlist-1@2x.jpg" alt="">
+                    <div class="hover-state">
+                        <div class="absolute-bottom-left pl-e-15 pb-e-15">
+                            <span class="pointer play-btn-dark round-btn"><i class="play-icon play-music"></i></span>
+                        </div>
+                        <div class="absolute-top-right pr-e-15 pt-e-15">
+                            <span class="pointer dropdown-menu-toggle"><span class="adonis-icon icon-4x"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink:href="#icon-horizontal-dots"></use></svg></span></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="title"><a href="#"><%=name%></a></h6>
+                <p class="sub-title category"><a href="#"><%=artistName%></a></p>
+            </div>
+        </div>
+    <% } %>
+    </div>
+    <div class="pt-e-40 pt-e-lg-20"></div>
+</section>
+
