@@ -338,16 +338,17 @@ jQuery(document).ready(function ($) {
       adonisPlayer.init();
     }, 100);
   });
-
+  // ------------------------------------------------Login---------------------------------------------------------------
   $("#loginwithApple").click(function () {
     applemusic.authorize().then(function (token) {
-      console.log(token);
       localStorage.setItem('token', token);
+      localStorage.setItem('user_type', 'apple');
       $("#token").val(token);
       $("#loginForm").submit();
     });
   });
 
+  // ----------------------------------------------------------------------------------------------------------------------
 
   // control menu items
   $(document).on("click", ".dropdown-item", function (e) {
@@ -368,9 +369,6 @@ jQuery(document).ready(function ($) {
       }
     }
     else if (target.html() == 'Add to Playlist') {
-      
-      
-
       let url = '/home/music/playlist/getlists';
       //get all playlists
       $.ajax({
@@ -381,16 +379,16 @@ jQuery(document).ready(function ($) {
           music_user_token: token,
           music_src: music_src
         },
-        success: function(res) {
+        success: function (res) {
           let data = res.data;
           let options = '';
           data = JSON.parse(data);
-          if(data.length > 0) {
+          if (data.length > 0) {
             data.forEach(playlist => {
               let id = playlist.id;
               let name = playlist.name;
               let description = playlist.description;
-              let item = '<option value="'+id+'">'+name+' ('+description+' )</option>';
+              let item = '<option value="' + id + '">' + name + ' (' + description + ' )</option>';
               options = options + item;
             });
           }
@@ -407,40 +405,51 @@ jQuery(document).ready(function ($) {
     }
   });
 
-// ------------------------ playlist ------------------------------
-$("#playlist_ids_select").change(function() {
-  let value = $("#playlist_ids_select").val();
-  if(value=='') {
-    $("#create_new_playlist_form").attr("style", "display: block;");
-    $("#playlist_modal_mode").val('create');
-  } else {
-    $("#create_new_playlist_form").attr("style", "display: none;");
-    $("#playlist_modal_mode").val('add');
-  }
-})
-
-$("#addPlaylistSubmit").click(function() {
-  let music_id = $("#playlist_modal_music_id").val();
-  let music_src = $("#playlist_modal_music_src").val();
-  let music_type = $("#playlist_modal_music_type").val();
-  let music_user_token = $("#playlist_modal_token").val();
-  let mode = $("#playlist_modal_mode").val();
-  let playlist_id = $("#playlist_ids_select").val();
-  let playlistName = $("#playlistName").val();
-  let playlistDescription = $("#playlistDescription").val();
-  if(!playlistName || !playlistDescription) return;
-  $.ajax({
-    url: '/home/music/playlist/addmusic',
-    method: 'POST',
-    crossDomain: true,
-    data: {
-      music_id, music_src, music_type, music_user_token, mode, playlist_id, playlistName, playlistDescription
-    },
-    success: function(res) {
-      $("#addtoPlaylistModal").modal('toggle');
+  // ------------------------ playlist ------------------------------
+  $("#playlist_ids_select").change(function () {
+    let value = $("#playlist_ids_select").val();
+    if (value == '') {
+      $("#create_new_playlist_form").attr("style", "display: block;");
+      $("#playlist_modal_mode").val('create');
+    } else {
+      $("#create_new_playlist_form").attr("style", "display: none;");
+      $("#playlist_modal_mode").val('add');
     }
   })
-})
 
+  $("#addPlaylistSubmit").click(function () {
+    let music_id = $("#playlist_modal_music_id").val();
+    let music_src = $("#playlist_modal_music_src").val();
+    let music_type = $("#playlist_modal_music_type").val();
+    let music_user_token = $("#playlist_modal_token").val();
+    let mode = $("#playlist_modal_mode").val();
+    let playlist_id = $("#playlist_ids_select").val();
+    let playlistName = $("#playlistName").val();
+    let playlistDescription = $("#playlistDescription").val();
+    if (!playlistName || !playlistDescription) return;
+    $.ajax({
+      url: '/home/music/playlist/addmusic',
+      method: 'POST',
+      crossDomain: true,
+      data: {
+        music_id, music_src, music_type, music_user_token, mode, playlist_id, playlistName, playlistDescription
+      },
+      success: function (res) {
+        $("#addtoPlaylistModal").modal('toggle');
+      }
+    })
+  })
+
+  $(document).on("click", ".playlist-list", async function (e) {
+    let target = $(e.target);
+    let id = target.attr('data-id');
+    if(localStorage.getItem('user_type') == 'apple') {
+      if(id) {
+        let data = await MusicKit.Library;//.playlist(id);
+        console.log(data);
+      }
+    }
+    
+  })
 
 });

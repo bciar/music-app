@@ -64,7 +64,7 @@ class HomeController {
         let playlist_id = req.body.playlist_id;
 
         if (!music_id || !music_src || !music_type || !music_mode || !music_user_token) res.status(400).json({ status: 'error', message: 'parameter error.' });
-        
+
         if (music_src == 'apple') {
             if (music_mode == 'create') {
                 let url = apiconfigs.musickit_apiurl + `/createPlaylist`;
@@ -114,6 +114,25 @@ class HomeController {
         }
         else {
             res.status(200).json({ status: 'success', message: 'saved playlist successfully.' });
+        }
+    }
+
+    getPlaylistById(req, res) {
+        let id = req.params.id;
+        let music_src = req.params.music_src;
+        if(music_src == 'apple') {
+            let url = apiconfigs.musickit_apiurl + `/`;
+            fetch(url)
+            .then(res => res.text())
+            .then(body => {
+                let result = JSON.parse(body);
+                // res.render('pages/parts/music/charts', { sharedData: sharedData, resultData: result });
+            })
+            .catch(err => {
+                res.status(200).json({ status: 'error', message: err });
+            });
+        } else {
+            res.status(200).send("ok");
         }
     }
 
