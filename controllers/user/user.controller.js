@@ -1,7 +1,6 @@
-
 const jwt = require('jsonwebtoken');
 var userInfo = {
-  loggedin : false,
+  loggedin: false,
   token: '',
   mode: ''
 };
@@ -14,13 +13,13 @@ class StoreController {
   }
 
   loginView(req, res) {
-      res.render('pages/login');
+    res.render('pages/login');
   }
 
   loginWithApple(req, res) {
-    if(req.body.token) {
+    if (req.body.token) {
       userInfo = {
-        loggedin : false,
+        loggedin: false,
         token: '',
         mode: ''
       };
@@ -30,8 +29,8 @@ class StoreController {
       let jwtSignData = userInfo
 
       let jwtSignOptions = {
-          expiresIn: config.jwt.expireTime,
-          algorithm: config.jwt.algorithm
+        expiresIn: config.jwt.expireTime,
+        algorithm: config.jwt.algorithm
       };
 
       let authToken = jwt.sign(jwtSignData, config.jwt.secretKey, jwtSignOptions);
@@ -42,21 +41,50 @@ class StoreController {
     }
   }
 
+  loginWithSportify(req, res) {
+    if (req.body.token) {
+      userInfo = {
+        loggedin: false,
+        token: '',
+        mode: ''
+      };
+      userInfo.loggedin = true;
+      userInfo.token = req.body.token;
+      userInfo.mode = 'Sportify';
+      let jwtSignData = userInfo
+
+      let jwtSignOptions = {
+        expiresIn: config.jwt.expireTime,
+        algorithm: config.jwt.algorithm
+      };
+
+      let authToken = jwt.sign(jwtSignData, config.jwt.secretKey, jwtSignOptions);
+      res.cookie('token', authToken);
+      res.redirect('/home');
+    } else {
+      res.redirect('/login');
+    }
+  }
+
+  loginWithSportifyRedirect(req, res) {
+    res.render('pages/login-sportify');
+  }
+
   logout(req, res) {
     userInfo = {
-      loggedin : false,
+      loggedin: false,
       token: '',
       mode: ''
     };
     userInfo = {
-      loggedin : false,
+      loggedin: false,
       token: '',
       mode: ''
     };
     let jwtSignData = userInfo
     let jwtSignOptions = {
-        expiresIn: config.jwt.expireTime,
-        algorithm: config.jwt.algorithm
+      expiresIn: config.jwt.expireTime,
+      algorithm: config.jwt.algorithm
     };
 
     let authToken = jwt.sign(jwtSignData, config.jwt.secretKey, jwtSignOptions);

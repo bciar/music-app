@@ -24,6 +24,8 @@ router.post('/playlist/:music_src/:id', userAuth,main.showPlaylist);
 router.use('/user', userAuth, require('../controllers/user'));
 router.get('/login', user.loginView);
 router.post('/loginWithApple', user.loginWithApple);
+router.post('/loginWithSportify', user.loginWithSportify);
+router.get('/loginWithSportifyRedirect', user.loginWithSportifyRedirect);
 router.get('/logout', user.logout);
 
 router.use('/api', require('../api'));

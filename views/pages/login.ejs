@@ -125,10 +125,17 @@
 	<form action="/loginWithApple" method="post" id="loginForm">
 		<input type="hidden" name="token" id="token" value="">
 		<div class="inputGroup inputGroup3">
-			<button type="button" id="loginwithApple">Login with Apple</button>
+			<button type="button" id="loginWithApple">Login with Apple</button>
 		</div>
+	</form>
+	<form action="https://accounts.spotify.com/en/authorize" class="no-padding" id="get-access-token" style="margin-top: 20px;">
+		<input type="hidden" name="response_type" value="token">
+		<input type="hidden" name="client_id" value="dbfd16018068438f8e4ac9c02218377d">
+		<input type="hidden" name="redirect_uri" data-generate-redirect-uri="true" value="http://localhost:4000/loginWithSportifyRedirect">
+		<input type="hidden" name="scope" value="streaming user-read-birthdate user-read-email user-modify-playback-state user-read-private">
+		<input type="hidden" name="show_dialog" value="true">
 		<div class="inputGroup inputGroup3">
-			<button type="button" id="loginwithSportify">Login with Sportify</button>
+			<button type="submit" id="loginwithSportify">Login with Sportify</button>
 		</div>
 	</form>
 </div>

@@ -1,0 +1,20 @@
+<html>
+  <head>
+    
+  </head>
+<body>
+<form action="/loginWithSportify" method="post" id="loginForm">
+		<input type="hidden" name="token" id="token" value="">
+	</form>
+<script src="../assets/vendors/jquery/jquery.min.js"></script>
+<script>
+  var url = window.location.hash;
+  var token = url.substring(url.indexOf('=') + 1, url.indexOf('&'));
+  localStorage.setItem('token', token);
+  localStorage.setItem('user_type', 'sportify');
+  $("#token").val(token);
+  $("#loginForm").submit();
+</script>
+</body>
+
+</html>

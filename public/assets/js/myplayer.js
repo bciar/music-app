@@ -1,4 +1,4 @@
-var applemusic;
+var applemusic, sportifymusic;
 var adonisPlayer = {},
   adonisAllPlaylists = [],
   adonisPlayerID = 'adonis_jplayer_main',
@@ -14,6 +14,37 @@ var adonisPlayer = {},
 document.addEventListener('musickitloaded', function () {
   applemusic = MusicKit.getInstance();
 });
+
+window.onSpotifyWebPlaybackSDKReady = () => {
+  if(localStorage.getItem('user_type') != 'sportify') return;
+  const token = localStorage.getItem('token');
+  const sportifymusic = new Spotify.Player({
+    name: 'Web Playback SDK Quick Start Player',
+    getOAuthToken: cb => { cb(token); }
+  });
+
+  // Error handling
+  sportifymusic.addListener('initialization_error', ({ message }) => { console.error(message); });
+  sportifymusic.addListener('authentication_error', ({ message }) => { console.error(message); });
+  sportifymusic.addListener('account_error', ({ message }) => { console.error(message); });
+  sportifymusic.addListener('playback_error', ({ message }) => { console.error(message); });
+
+  // Playback status updates
+  sportifymusic.addListener('player_state_changed', state => { console.log(state); });
+
+  // Ready
+  sportifymusic.addListener('ready', ({ device_id }) => {
+    console.log('Ready with Device ID', device_id);
+  });
+
+  // Not Ready
+  sportifymusic.addListener('not_ready', ({ device_id }) => {
+    console.log('Device ID has gone offline', device_id);
+  });
+
+  // Connect to the player!
+  sportifymusic.connect();
+};
 
 var getAppleMusicdetail = async function (music_id) {
 
@@ -40,6 +71,7 @@ var getAppleMusicdetail = async function (music_id) {
 }
 
 $(document).on("click", ".play-music", function (e) {
+  applemusic = MusicKit.getInstance();
   let target = $(e.target);
   let item = target.parents('.music-img-box');
   let music_type = item.attr('data-music-type');
@@ -355,16 +387,13 @@ jQuery(document).ready(function ($) {
     }, 100);
   });
   // ------------------------------------------------Login---------------------------------------------------------------
-  $("#loginwithApple").click(function () {
-    applemusic.authorize().then(function (token) {
+  $("#loginWithApple").click(function () {
+    MusicKit.getInstance().authorize().then(function (token) {
       localStorage.setItem('token', token);
       localStorage.setItem('user_type', 'apple');
       $("#token").val(token);
       $("#loginForm").submit();
     });
-  });
-  $("#loginwithSportify").click(function () {
-    
   });
 
   // ----------------------------------------------------------------------------------------------------------------------
