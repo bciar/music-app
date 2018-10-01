@@ -122,23 +122,15 @@
 			</svg>
 		</div>
 	</div>
-	<div>
+	<form action="/loginWithApple" method="post" id="loginForm">
 		<input type="hidden" name="token" id="token" value="">
 		<div class="inputGroup inputGroup3">
 			<button type="button" id="loginwithApple">Login with Apple</button>
 		</div>
-		<form action="https://accounts.spotify.com/en/authorize" class="no-padding" id="get-access-token">
-			<input type="hidden" name="response_type" value="token">
-			<input type="hidden" name="client_id" value="adaaf209fb064dfab873a71817029e0d">
-			<input type="hidden" name="redirect_uri" data-generate-redirect-uri="true" value="https://developer.spotify.com/documentation/web-playback-sdk/quick-start/">
-			<input type="hidden" name="scope" value="streaming user-read-birthdate user-read-email user-modify-playback-state user-read-private">
-			<input type="hidden" name="show_dialog" value="true">
-			<div class="inputGroup inputGroup3">
-				<button type="submit" id="loginwithSportify">Login with Sportify</button>
-			</div>
-		</form>
-		
-	</div>
+		<div class="inputGroup inputGroup3">
+			<button type="button" id="loginwithSportify">Login with Sportify</button>
+		</div>
+	</form>
 </div>
 <script src="../assets/vendors/jquery/jquery.min.js"></script>
 <script src="../assets/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
