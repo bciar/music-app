@@ -62,7 +62,7 @@ class MainController {
     }
 
     showPlaylist(req, res) {
-        let playlist = JSON.parse(req.body.playlist);
+        let playlist = req.body.data;
         let music_src = req.params.music_src;
         
         if (music_src == 'apple') {

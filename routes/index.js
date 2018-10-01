@@ -19,7 +19,7 @@ router.get('/my-like', userAuth, main.myLike);
 router.get('/single-artist', userAuth, main.singleArtist);
 router.get('/single-playlist', userAuth,main.singlePlaylist);
 
-router.post('/playlist/:music_src', userAuth,main.showPlaylist);
+router.post('/playlist/:music_src/:id', userAuth,main.showPlaylist);
 
 router.use('/user', userAuth, require('../controllers/user'));
 router.get('/login', user.loginView);

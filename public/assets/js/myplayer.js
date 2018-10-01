@@ -440,41 +440,5 @@ jQuery(document).ready(function ($) {
     })
   })
 
-  $(document).on("click", ".playlist-list", async function (e) {
-    let target = $(e.target);
-    let id = target.attr('data-id');
-    let music_user_token = localStorage.getItem('token');
-
-    if (localStorage.getItem('user_type') == 'apple') {
-      if (id) {
-        applemusic.api.library.playlist(id).then(playlist => {
-          let f = document.createElement("form");
-          f.setAttribute('method', "post");
-          f.setAttribute('action', "/playlist/apple");
-          let i = document.createElement("input");
-          i.setAttribute('type', "text");
-          i.setAttribute('name', "playlist");
-          i.setAttribute('value', JSON.stringify(playlist));
-          f.appendChild(i);
-          document.getElementsByTagName('body')[0].appendChild(f);
-          f.submit(function (e) {
-            e.preventDefault();
-          });
-          // $.ajax({
-          //   url: `/playlist/apple`,
-          //   method: 'POST',
-          //   context: document.body,
-          //   data: { playlist },
-          //   crossDomain: true,
-          //   success: function (res) {
-          //     // $("#browse-content-overview").html(res);
-          //   }
-          // });
-        });
-
-      }
-    }
-
-  })
 
 });
