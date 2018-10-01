@@ -197,12 +197,14 @@ jQuery(document).ready(function ($) {
     var maxtime = currentPlayMusic.data.duration;
     var percentage = currentPlayTime / maxtime * 100;
     updatebar(percentage);
-    if (isPlaying && currentPlayTime < maxtime) {
+    if (currentPlayTime >= maxtime - 1) {
+      adonisPlayer.playNext();
+      console.log("next");
+    }
+    if (isPlaying && currentPlayTime < maxtime - 1) {
       setTimeout(showingTimeAndProgress, 1000);
     }
-    if (currentPlayTime >= maxtime) {
-      adonisPlayer.playNext();
-    }
+    
   }
 
   var timeDrag = false; /* Drag status */
