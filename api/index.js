@@ -15,12 +15,14 @@ router.post('/musickit/addPlaylist', musickit.addPlaylist);
 router.post('/musickit/getPlaylists', musickit.getPlaylists);
 router.post('/musickit/getPlaylistByid', musickit.getlistByid);
 
-router.get('/musickit/getCatalogCharts', musickit.getCatalogCharts);
+router.post('/musickit/getCatalogCharts', musickit.getCatalogCharts);
 
 router.get('/musickit/searchCatalogResources', musickit.searchCatalogResources);
 router.get('/musickit/searchLibraryResources', musickit.searchLibraryResources);
 router.get('/musickit/getCatalogSearchHints', musickit.getCatalogSearchHints);
 
 router.get('/spotify', spotify.index.bind(spotify));
+router.post('/spotify/getBrowseCategories', spotify.getBrowseCategories);
+router.post('/spotify/getRecommendations', spotify.getRecommendations);
 
 module.exports = router;

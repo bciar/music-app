@@ -60,7 +60,7 @@
     <div class="adonis-carousel music-img-box-cont-sm " data-auto-width="yes" data-loop="no" data-dots="yes" data-responsive-width="0:100%|600:50%|900:33.33%|1200:25%">
         <div class="gutter-30">
             <div class="owl-carousel owl-theme-adonis">
-            <% for(var j = 0 ; j < 5 ; j++) {  %>
+            <% if(resultData.songs) for(var j = 0 ; j < 5 ; j++) {  %>
             <div class="item">
                 <% for(var i = 4*j ; i < 4*(j+1) ; i++) {  %>
                     <div class="img-box-horizontal music-img-box h-g-bg h-d-shadow"  data-music-type="song" data-music-src="<%=resultData.music_src%>"  data-music-id="<%=resultData.songs[i].id%>">
@@ -95,7 +95,7 @@
     <div class="adonis-carousel gutter-30" data-dots="yes" data-items="7" data-items-responsive="0:1|300:2|900:4|1200:5|1600:7">
         <div class="carousel-wrapper">
             <div class="owl-carousel owl-theme-adonis">
-                <% for(var i = 0; i < 10 ; i++) { %>
+                <% if(resultData.albums) for(var i = 0; i < 10 ; i++) { %>
                 <div class="item">
                     <div class="music-img-box">
                         <div class="img-box box-rounded-md">
@@ -126,7 +126,7 @@
     <div class="adonis-carousel" data-dots="yes"data-items-responsive="0:1|600:2|900:3|1200:4|1600:5">
         <div class="gutter-30">
             <div class="owl-carousel owl-theme-adonis">
-            <% for(var i = 0; i < 10 ; i++) { %>
+            <% if(resultData.music_videos) for(var i = 0; i < 10 ; i++) { %>
                 <div class="item">
                     <div class="music-img-box">
                         <div class="img-box box-rounded-md">

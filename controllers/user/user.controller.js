@@ -70,14 +70,14 @@ class UserController {
     res.render('pages/login-sportify');
   }
 
-  getUserinfo(req) {
+  async getUserinfo(req) {
     if (req.cookies['token'] != null) {
       let headerToken = req.cookies['token'];
       let jwtSecretKey = config.jwt.secretKey;
       let jwtAlgorithm = {
         algorithms: config.jwt.algorithm
       };
-      jwt.verify(headerToken, jwtSecretKey, jwtAlgorithm, (err, decoded) => {
+      return await jwt.verify(headerToken, jwtSecretKey, jwtAlgorithm, (err, decoded) => {
         if (err) {
           return false;
         } else {
