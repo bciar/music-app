@@ -51,7 +51,6 @@ function userAuth(req, res, next) {
   } else {
     res.redirect('/login');
   }
-  
 }
     
 module.exports = router;

@@ -17,8 +17,8 @@ document.addEventListener('musickitloaded', function () {
 
 window.onSpotifyWebPlaybackSDKReady = () => {
   if(localStorage.getItem('user_type') != 'sportify') return;
-  const token = localStorage.getItem('token');
-  const sportifymusic = new Spotify.Player({
+  let token = localStorage.getItem('token');
+  sportifymusic = new Spotify.Player({
     name: 'Web Playback SDK Quick Start Player',
     getOAuthToken: cb => { cb(token); }
   });

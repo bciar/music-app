@@ -5,7 +5,7 @@ var userInfo = {
   mode: ''
 };
 
-class StoreController {
+class UserController {
   constructor() {}
 
   index(req, res) {
@@ -70,6 +70,25 @@ class StoreController {
     res.render('pages/login-sportify');
   }
 
+  getUserinfo(req) {
+    if (req.cookies['token'] != null) {
+      let headerToken = req.cookies['token'];
+      let jwtSecretKey = config.jwt.secretKey;
+      let jwtAlgorithm = {
+        algorithms: config.jwt.algorithm
+      };
+      jwt.verify(headerToken, jwtSecretKey, jwtAlgorithm, (err, decoded) => {
+        if (err) {
+          return false;
+        } else {
+          return decoded;
+        }
+      });
+    } else {
+      return false;
+    }
+  }
+
   logout(req, res) {
     userInfo = {
       loggedin: false,
@@ -94,4 +113,4 @@ class StoreController {
 
 }
 
-module.exports = StoreController;
+module.exports = UserController;
