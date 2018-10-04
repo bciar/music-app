@@ -24,5 +24,6 @@ router.get('/musickit/getCatalogSearchHints', musickit.getCatalogSearchHints);
 router.get('/spotify', spotify.index.bind(spotify));
 router.post('/spotify/getBrowseCategories', spotify.getBrowseCategories);
 router.post('/spotify/getRecommendations', spotify.getRecommendations);
+router.post('/spotify/newRelease', spotify.newRelease);
 
 module.exports = router;

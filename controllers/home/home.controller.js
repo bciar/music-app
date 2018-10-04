@@ -15,10 +15,41 @@ class HomeController {
         });
     }
 
-    newMusic(req, res) {
-        res.render('pages/parts/music/new-music', {
-            sharedData: sharedData
-        });
+    async newMusic(req, res) {
+        let user = new userController();
+        let userdata = await user.getUserinfo(req);
+        var url = '';
+        if (userdata.mode == 'Apple') {
+            url = apiconfigs.musickit_apiurl + `/newRelease`;
+        } else {
+            url = apiconfigs.spotify_apiurl + `/newRelease`;
+        }
+
+        fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    token: userdata.token
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(res => res.text())
+            .then(body => {
+                let result = body;
+                res.render('pages/parts/music/new-music', {
+                    sharedData: sharedData,
+                    resultData: result
+                });
+            })
+            .catch(err => {
+                res.render('pages/parts/music/new-music', {
+                    sharedData: sharedData,
+                    resultData: []
+                });
+            });
+
+
     }
 
     playlist(req, res) {
